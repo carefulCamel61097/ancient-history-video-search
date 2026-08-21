@@ -1,7 +1,9 @@
-# Ancient History Video Search
+# Alternative Ancient History — Video Search
 
-Search the spoken content of YouTube videos about ancient history by describing what you
-half-remember, rather than by guessing the right keyword.
+Search the spoken content of YouTube channels covering alternative ancient history --
+megalithic building, lost technology, catastrophe and myth -- by describing what you
+half-remember, rather than by guessing the right keyword. Mainstream counterpoint
+channels are indexed too, so both sides of a question are searchable.
 
 Type something like *"walls that look the same on opposite sides of the world"* and it returns
 which channel, which video, and the timestamp where it was said.
