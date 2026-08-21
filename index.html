@@ -10,11 +10,13 @@
      available through the toggle, which stamps data-theme="light". */
   :root {
     --bg: #14130f; --fg: #ede7dc; --muted: #9c9488; --line: #2e2a24;
-    --card: #1c1a16; --accent: #d8a15f; --chip: #272420; --markbg: #4a3a14;
+    --card: #1c1a16; --accent: #d8a15f; --chip: #272420; --markbg: #5c4718;
+    --semhi: rgba(216,161,95,0.30);
   }
   :root[data-theme="light"] {
     --bg: #fbfaf8; --fg: #1c1a17; --muted: #6b6560; --line: #e2ddd6;
-    --card: #ffffff; --accent: #8a5320; --chip: #f0ebe4; --markbg: #f7e2a8;
+    --card: #ffffff; --accent: #8a5320; --chip: #f0ebe4; --markbg: #ffe9a8;
+    --semhi: rgba(138,83,32,0.22);
   }
   * { box-sizing: border-box; }
   body {
@@ -62,7 +64,12 @@
   .hit .stamp {
     display: inline-block; font-variant-numeric: tabular-nums; font-size: 0.8rem;
     background: var(--chip); border-radius: 5px; padding: 1px 7px; margin-right: 8px;
+    color: var(--accent); text-decoration: none; font-weight: 600;
+    border: 1px solid var(--line); white-space: nowrap;
   }
+  .hit .stamp:hover { border-color: var(--accent); }
+  .hit .chan a { color: var(--accent); text-decoration: none; }
+  .hit .chan a:hover { text-decoration: underline; }
   .warn {
     font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--line);
     margin-top: 28px; padding-top: 14px;
@@ -71,13 +78,26 @@
   /* Why a result matched */
   mark { background: var(--markbg); color: var(--fg); border-radius: 3px; padding: 0 2px; }
 
-  /* Short by default; the whole passage on hover, focus, or tap */
+  /* The sentence the meaning matched on, as opposed to a literal word match */
+  .sem {
+    background: linear-gradient(transparent 62%, var(--semhi) 62%);
+    border-radius: 2px;
+  }
+
+  /* Short by default, whole passage when expanded */
   .hit .full { display: none; }
-  .hit:hover .short, .hit:focus-within .short, .hit.open .short { display: none; }
-  .hit:hover .full, .hit:focus-within .full, .hit.open .full { display: inline; }
-  .hit { cursor: default; transition: border-color 0.15s; }
-  .hit:hover, .hit:focus-within { border-color: var(--accent); }
-  .hit:focus { outline: none; }
+  .hit.open .short { display: none; }
+  .hit.open .full { display: inline; }
+  .hit { transition: border-color 0.15s; }
+  .hit:hover { border-color: var(--accent); }
+  .more {
+    display: inline-block; margin-top: 8px; padding: 3px 9px; font-size: 0.75rem;
+    background: var(--chip); color: var(--muted); border: 1px solid var(--line);
+    border-radius: 999px; cursor: pointer;
+  }
+  .more:hover { color: var(--fg); border-color: var(--accent); }
+  .legend { font-size: 0.78rem; color: var(--muted); margin: 0 0 14px; }
+  .legend .sem, .legend mark { padding: 0 4px; }
 
   /* Channel picker */
   .picker { position: relative; display: inline-block; }
@@ -155,6 +175,9 @@
   </p>
 
   <div class="status" id="status">Loading…<div class="bar"><div id="prog"></div></div></div>
+  <p class="legend" id="legend" hidden>
+    <mark>your words</mark> &nbsp; <span class="sem">the part the meaning matched</span>
+  </p>
   <div id="results"></div>
 
   <p class="warn">
@@ -236,15 +259,40 @@ function centreWindow(text, re, width) {
   return { text: text.slice(start, end), truncStart: start > 0, truncEnd: end < text.length };
 }
 
-function renderQuote(text, re, width) {
-  const w = centreWindow(text, re, width);
-  let html = esc(w.text);
-  if (re) {
-    re.lastIndex = 0;
-    html = html.replace(re, (m) => `<mark>${m}</mark>`);
-  }
-  return (w.truncStart ? "…" : "") + html + (w.truncEnd ? "…" : "");
+// Render a window of the passage with two kinds of highlight:
+//   <mark>          a literal query word
+//   <span class=sem> the sentence closest in meaning to the query
+// The second is the interesting one -- it is what the embedding actually
+// matched on, and it fires even when no word is shared with the query.
+function highlight(text, re, sem) {
+  const parts = sem
+    ? [[text.slice(0, sem[0]), false], [text.slice(sem[0], sem[1]), true], [text.slice(sem[1]), false]]
+    : [[text, false]];
+  return parts.map(([chunk, isSem]) => {
+    let html = esc(chunk);
+    if (re) { re.lastIndex = 0; html = html.replace(re, (m) => `<mark>${m}</mark>`); }
+    return isSem ? `<span class="sem">${html}</span>` : html;
+  }).join("");
 }
+
+// Show the part that actually matched, not the arbitrary opening of the
+// passage. Prefers the query words; falls back to the matched sentence.
+function renderQuote(text, re, width, sem) {
+  let anchor = re;
+  if (sem && (!re || (re.lastIndex = 0, !re.test(text)))) {
+    anchor = new RegExp(escapeRe(text.slice(sem[0], Math.min(sem[1], sem[0] + 40))), "g");
+  }
+  const w = centreWindow(text, anchor, width);
+  const offset = text.indexOf(w.text);
+  let localSem = null;
+  if (sem && offset !== -1) {
+    const a = Math.max(0, sem[0] - offset), b = Math.min(w.text.length, sem[1] - offset);
+    if (b > a) localSem = [a, b];
+  }
+  return (w.truncStart ? "…" : "") + highlight(w.text, re, localSem) + (w.truncEnd ? "…" : "");
+}
+
+function escapeRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
 
 const hhmmss = (s) => {
   const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), x = Math.floor(s % 60);
@@ -481,6 +529,7 @@ async function search() {
   }
 
   statusEl.textContent = `${top.length} results`;
+  $("legend").hidden = false;
   const texts = await Promise.all(top.map(textFor));
 
   const re = termRegex(queryTerms(query));
@@ -492,14 +541,18 @@ async function search() {
     const full = texts[k];
     let fullHtml = esc(full);
     if (re) { re.lastIndex = 0; fullHtml = fullHtml.replace(re, (m) => `<mark>${m}</mark>`); }
-    return `<div class="hit" data-k="${k}" tabindex="0">
-      <div class="meta"><span class="chan">${esc(DATA.channels[ci])}</span></div>
+    const chanUrl = (DATA.channel_urls || [])[ci];
+    const chanName = esc(DATA.channels[ci]);
+    return `<div class="hit" data-k="${k}">
+      <div class="meta"><span class="chan">${chanUrl
+        ? `<a href="${chanUrl}" target="_blank" rel="noopener">${chanName}</a>` : chanName}</span></div>
       <div class="title"><a href="${url}" target="_blank" rel="noopener">${esc(DATA.titles[ti])}</a></div>
       <div class="quote">
         <a class="stamp" href="${url}" target="_blank" rel="noopener">${hhmmss(start)}</a><span
           class="short">${renderQuote(full, re, inline)}</span><span
           class="full">${fullHtml}</span>
       </div>
+      <span class="more" role="button" tabindex="0">Show the whole passage</span>
     </div>`;
   }).join("");
 
@@ -515,27 +568,24 @@ async function search() {
 // to the query. Only the handful of shown results are embedded, so this is a
 // few dozen short texts rather than the whole corpus.
 async function markBestSentences(top, texts, re) {
-  const needy = [];
-  top.forEach((_, k) => {
-    if (re) { re.lastIndex = 0; if (re.test(texts[k])) return; }   // already marked
-    needy.push(k);
-  });
-  if (!needy.length) return;
-
+  // Runs for every shown result, not only the ones with no word in common.
+  // Exact-word marks answer "which of my words appear"; this answers the more
+  // useful question, "which part of this did the meaning match".
   const jobs = [];
-  for (const k of needy) {
+  top.forEach((_, k) => {
     const sents = texts[k].split(/(?<=[.!?])\s+/).filter((s) => s.split(" ").length >= 5);
     if (sents.length > 1) jobs.push({ k, sents });
-  }
-  if (!jobs.length) return;
+  });
+  const q = lastQueryVec;
+  if (!jobs.length || !q) return;
 
   try {
     const flat = jobs.flatMap((j) => j.sents);
     const out = await extractor(flat, { pooling: "mean", normalize: true });
     const dim = out.dims[out.dims.length - 1];
-    const q = lastQueryVec;
-    if (!q) return;
+    const inline = META.inline_chars || 220;
     let cursor = 0;
+
     for (const j of jobs) {
       let best = -1, bestScore = -Infinity;
       for (let s = 0; s < j.sents.length; s++) {
@@ -545,24 +595,17 @@ async function markBestSentences(top, texts, re) {
         if (dot > bestScore) { bestScore = dot; best = s; }
       }
       cursor += j.sents.length;
+
       const el = resultsEl.querySelector(`.hit[data-k="${j.k}"]`);
       if (!el || best < 0) continue;
-      const sentence = j.sents[best];
-      const mark = (node) => {
-        const i = node.textContent.indexOf(sentence.slice(0, 60));
-        if (i === -1) return;
-        node.innerHTML = esc(node.textContent.slice(0, i))
-          + "<mark>" + esc(node.textContent.slice(i, i + sentence.length)) + "</mark>"
-          + esc(node.textContent.slice(i + sentence.length));
-      };
-      mark(el.querySelector(".full"));
-      // Re-centre the short form on the matching sentence.
-      const shortEl = el.querySelector(".short");
-      const w = centreWindow(texts[j.k],
-        new RegExp(sentence.slice(0, 40).replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g"),
-        META.inline_chars || 220);
-      shortEl.innerHTML = (w.truncStart ? "…" : "") + esc(w.text) + (w.truncEnd ? "…" : "");
-      mark(shortEl);
+
+      const text = texts[j.k];
+      const at = text.indexOf(j.sents[best]);
+      if (at === -1) continue;
+      const sem = [at, at + j.sents[best].length];
+
+      el.querySelector(".short").innerHTML = renderQuote(text, re, inline, sem);
+      el.querySelector(".full").innerHTML = highlight(text, re, sem);
     }
   } catch (e) {
     console.warn("sentence marking skipped:", e);
@@ -584,10 +627,22 @@ $("theme").addEventListener("click", () => {
 });
 
 // Hover does not exist on touch, so tapping a result expands it too.
+function toggleHit(hit) {
+  if (!hit) return;
+  hit.classList.toggle("open");
+  const btn = hit.querySelector(".more");
+  if (btn) btn.textContent = hit.classList.contains("open")
+    ? "Show less" : "Show the whole passage";
+}
 resultsEl.addEventListener("click", (e) => {
   if (e.target.closest("a")) return;
-  const hit = e.target.closest(".hit");
-  if (hit) hit.classList.toggle("open");
+  toggleHit(e.target.closest(".hit"));
+});
+resultsEl.addEventListener("keydown", (e) => {
+  if ((e.key === "Enter" || e.key === " ") && e.target.classList.contains("more")) {
+    e.preventDefault();
+    toggleHit(e.target.closest(".hit"));
+  }
 });
 
 $("go").addEventListener("click", search);
