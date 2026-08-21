@@ -1,0 +1,13 @@
+{
+  "model": "Xenova/all-MiniLM-L6-v2",
+  "query_prefix": "",
+  "dim": 192,
+  "source_dim": 384,
+  "projection": true,
+  "count": 157008,
+  "shard_size": 250,
+  "shards": 629,
+  "quantisation": "int8 symmetric, scale 127",
+  "keyword": true,
+  "snippet_chars": 200
+}
