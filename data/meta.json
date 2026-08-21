@@ -4,10 +4,11 @@
   "dim": 192,
   "source_dim": 384,
   "projection": true,
-  "count": 157008,
+  "count": 157013,
   "shard_size": 250,
   "shards": 629,
   "quantisation": "int8 symmetric, scale 127",
   "keyword": true,
-  "snippet_chars": 200
+  "snippet_chars": 600,
+  "inline_chars": 220
 }

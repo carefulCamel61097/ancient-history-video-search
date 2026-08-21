@@ -6,19 +6,15 @@
 <title>Ancient History Video Search</title>
 <meta name="description" content="Search the spoken content of ancient-history YouTube videos by describing what you half-remember. Every result links to the creator's video at the moment it was said.">
 <style>
+  /* Dark is the default here, not a system-preference fallback. Light is
+     available through the toggle, which stamps data-theme="light". */
   :root {
+    --bg: #14130f; --fg: #ede7dc; --muted: #9c9488; --line: #2e2a24;
+    --card: #1c1a16; --accent: #d8a15f; --chip: #272420; --markbg: #4a3a14;
+  }
+  :root[data-theme="light"] {
     --bg: #fbfaf8; --fg: #1c1a17; --muted: #6b6560; --line: #e2ddd6;
-    --card: #ffffff; --accent: #7a4b2a; --chip: #f0ebe4;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #161513; --fg: #ece8e2; --muted: #9a938a; --line: #302d29;
-      --card: #1e1c1a; --accent: #d09a6a; --chip: #2a2724;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #161513; --fg: #ece8e2; --muted: #9a938a; --line: #302d29;
-    --card: #1e1c1a; --accent: #d09a6a; --chip: #2a2724;
+    --card: #ffffff; --accent: #8a5320; --chip: #f0ebe4; --markbg: #f7e2a8;
   }
   * { box-sizing: border-box; }
   body {
@@ -71,6 +67,49 @@
     font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--line);
     margin-top: 28px; padding-top: 14px;
   }
+
+  /* Why a result matched */
+  mark { background: var(--markbg); color: var(--fg); border-radius: 3px; padding: 0 2px; }
+
+  /* Short by default; the whole passage on hover, focus, or tap */
+  .hit .full { display: none; }
+  .hit:hover .short, .hit:focus-within .short, .hit.open .short { display: none; }
+  .hit:hover .full, .hit:focus-within .full, .hit.open .full { display: inline; }
+  .hit { cursor: default; transition: border-color 0.15s; }
+  .hit:hover, .hit:focus-within { border-color: var(--accent); }
+  .hit:focus { outline: none; }
+
+  /* Channel picker */
+  .picker { position: relative; display: inline-block; }
+  .picker > button {
+    background: var(--card); color: var(--fg); border: 1px solid var(--line);
+    padding: 7px 10px; font-size: 0.85rem; border-radius: 7px;
+  }
+  .panel {
+    display: none; position: absolute; z-index: 20; top: 110%; left: 0;
+    background: var(--card); border: 1px solid var(--line); border-radius: 9px;
+    padding: 8px; width: 290px; max-height: 320px; overflow-y: auto;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+  }
+  .picker.open .panel { display: block; }
+  .panel label {
+    display: flex; align-items: center; gap: 8px; padding: 5px 6px;
+    border-radius: 6px; cursor: pointer; color: var(--fg); font-size: 0.85rem;
+  }
+  .panel label:hover { background: var(--chip); }
+  .panel .tools {
+    display: flex; gap: 6px; padding: 2px 4px 8px; border-bottom: 1px solid var(--line);
+    margin-bottom: 6px;
+  }
+  .panel .tools button {
+    flex: 1; background: var(--chip); color: var(--fg); border: 1px solid var(--line);
+    font-size: 0.75rem; padding: 4px 6px; border-radius: 6px;
+  }
+  .panel .count { color: var(--muted); font-size: 0.75rem; margin-left: auto; }
+  #theme {
+    margin-left: auto; background: var(--chip); color: var(--fg);
+    border: 1px solid var(--line); font-size: 0.78rem; padding: 5px 10px;
+  }
 </style>
 </head>
 <body>
@@ -87,13 +126,23 @@
     <button id="go" disabled>Find</button>
   </div>
   <div class="controls">
-    <label>Channel <select id="chan"><option value="">all</option></select></label>
+    <span class="picker" id="chanPicker">
+      <button type="button" id="chanBtn">Channels: all</button>
+      <div class="panel" id="chanPanel">
+        <div class="tools">
+          <button type="button" data-all="1">Select all</button>
+          <button type="button" data-all="0">Clear</button>
+        </div>
+        <div id="chanList"></div>
+      </div>
+    </span>
     <label>Match on <select id="mode">
       <option value="hybrid">meaning and words</option>
       <option value="semantic">meaning only</option>
       <option value="keyword">words only</option>
     </select></label>
     <span id="corpus"></span>
+    <button type="button" id="theme">Light mode</button>
   </div>
 
   <p class="examples">
@@ -133,6 +182,70 @@ const setStatus = (msg, pct) => {
   if (pct != null) $("prog").style.width = (pct * 100).toFixed(0) + "%";
 };
 
+const esc = (s) => s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+
+// --- showing why a result matched ---------------------------------------
+// Two different jobs. Literal query words get marked directly. But a result
+// can match on meaning with no word in common at all -- that is the whole
+// point of the embedding half -- so for those the best-matching *sentence*
+// is marked instead, worked out after rendering (see markBestSentences).
+
+const STOP = new Set(("the a an and or of to in is are was were it its that this these those "
+  + "for on at by with from as be been do does did they them their there here what which who "
+  + "how why when where i you we he she his her not no so if then than about into over under "
+  + "can could would should will just like some more most other same").split(" "));
+
+function queryTerms(query) {
+  return (query.toLowerCase().match(/[a-z0-9']+/g) || [])
+    .filter((w) => w.length > 2 && !STOP.has(w));
+}
+
+// Match on a prefix so "wall" hits "walls" and "machining" hits "machine".
+function termRegex(terms) {
+  if (!terms.length) return null;
+  const stems = terms.map((t) => t.length > 5 ? t.slice(0, Math.ceil(t.length * 0.75)) : t)
+                     .map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  return new RegExp("\\b(" + [...new Set(stems)].join("|") + ")\\w*", "gi");
+}
+
+// Pick the window of `width` characters that covers the most query terms,
+// so the snippet shows the part that actually matched rather than the
+// arbitrary opening of the passage.
+function centreWindow(text, re, width) {
+  if (text.length <= width) return { text, truncStart: false, truncEnd: false };
+  let best = 0, bestScore = -1;
+  if (re) {
+    const hits = [];
+    re.lastIndex = 0;
+    let m;
+    while ((m = re.exec(text)) !== null) hits.push(m.index);
+    for (const h of hits) {
+      const start = Math.max(0, h - Math.floor(width / 3));
+      const score = hits.filter((x) => x >= start && x < start + width).length;
+      if (score > bestScore) { bestScore = score; best = start; }
+    }
+  }
+  let start = Math.max(0, Math.min(best, text.length - width));
+  let end = start + width;
+  if (start > 0) {                       // do not start mid-word
+    const sp = text.indexOf(" ", start);
+    if (sp !== -1 && sp - start < 25) start = sp + 1;
+  }
+  const sp2 = text.lastIndexOf(" ", end);
+  if (sp2 > start + width * 0.6) end = sp2;
+  return { text: text.slice(start, end), truncStart: start > 0, truncEnd: end < text.length };
+}
+
+function renderQuote(text, re, width) {
+  const w = centreWindow(text, re, width);
+  let html = esc(w.text);
+  if (re) {
+    re.lastIndex = 0;
+    html = html.replace(re, (m) => `<mark>${m}</mark>`);
+  }
+  return (w.truncStart ? "…" : "") + html + (w.truncEnd ? "…" : "");
+}
+
 const hhmmss = (s) => {
   const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), x = Math.floor(s % 60);
   return h ? `${h}:${String(m).padStart(2,"0")}:${String(x).padStart(2,"0")}`
@@ -140,6 +253,7 @@ const hhmmss = (s) => {
 };
 
 let META, DATA, VECS, PROJ, extractor;
+let lastQueryVec = null;   // unprojected, for sentence marking
 let TERMS, POSTINGS, DOCLEN, TERM_IX;
 const shardCache = new Map();
 
@@ -209,9 +323,7 @@ async function boot() {
     },
   });
 
-  const chan = $("chan");
-  [...DATA.channels].map((c, i) => [c, i]).sort((a, b) => a[0].localeCompare(b[0]))
-    .forEach(([c, i]) => chan.add(new Option(c, String(i))));
+  buildChannelPicker();
 
   $("corpus").textContent =
     `${DATA.rows.length.toLocaleString()} passages from ${DATA.videos.length.toLocaleString()} videos`;
@@ -224,6 +336,7 @@ async function boot() {
 async function embedQuery(text) {
   const out = await extractor(META.query_prefix + text, { pooling: "mean", normalize: true });
   let v = Float32Array.from(out.data);
+  lastQueryVec = v;                        // before projection, to match sentence vectors
   if (PROJ) {
     const d = META.dim, src = META.source_dim, r = new Float32Array(d);
     for (let i = 0; i < d; i++) {
@@ -247,6 +360,65 @@ async function textFor(idx) {
   return (await shardCache.get(shard))[idx % META.shard_size];
 }
 
+// --- channel picker: multi-select, because filtering to a couple of channels
+// is more useful than to exactly one ------------------------------------
+const selectedChannels = new Set();     // empty means "all"
+
+function channelCounts() {
+  const n = new Map();
+  for (const r of DATA.rows) n.set(r[1], (n.get(r[1]) || 0) + 1);
+  return n;
+}
+
+function updateChannelButton() {
+  const btn = $("chanBtn");
+  if (selectedChannels.size === 0 || selectedChannels.size === DATA.channels.length) {
+    btn.textContent = "Channels: all";
+  } else if (selectedChannels.size === 1) {
+    btn.textContent = "Channel: " + DATA.channels[[...selectedChannels][0]];
+  } else {
+    btn.textContent = `Channels: ${selectedChannels.size} selected`;
+  }
+}
+
+function buildChannelPicker() {
+  const counts = channelCounts();
+  const list = $("chanList");
+  list.innerHTML = DATA.channels
+    .map((c, i) => [c, i])
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([c, i]) =>
+      `<label><input type="checkbox" value="${i}">
+         <span>${esc(c)}</span>
+         <span class="count">${(counts.get(i) || 0).toLocaleString()}</span>
+       </label>`).join("");
+
+  list.addEventListener("change", (e) => {
+    const ix = Number(e.target.value);
+    if (e.target.checked) selectedChannels.add(ix); else selectedChannels.delete(ix);
+    updateChannelButton();
+  });
+
+  $("chanPanel").querySelectorAll("[data-all]").forEach((b) =>
+    b.addEventListener("click", () => {
+      const on = b.dataset.all === "1";
+      selectedChannels.clear();
+      list.querySelectorAll("input").forEach((cb) => {
+        cb.checked = on;
+        if (on) selectedChannels.add(Number(cb.value));
+      });
+      updateChannelButton();
+    }));
+
+  $("chanBtn").addEventListener("click", (e) => {
+    e.stopPropagation();
+    $("chanPicker").classList.toggle("open");
+  });
+  $("chanPanel").addEventListener("click", (e) => e.stopPropagation());
+  document.addEventListener("click", () => $("chanPicker").classList.remove("open"));
+  updateChannelButton();
+}
+
 async function search() {
   const query = $("q").value.trim();
   if (!query) return;
@@ -255,12 +427,13 @@ async function search() {
   resultsEl.innerHTML = "";
 
   const d = META.dim, n = DATA.rows.length;
-  const chanFilter = $("chan").value === "" ? -1 : Number($("chan").value);
-  const allowed = (i) => chanFilter < 0 || DATA.rows[i][1] === chanFilter;
+  const filtering = selectedChannels.size > 0 && selectedChannels.size < DATA.channels.length;
+  const allowed = (i) => !filtering || selectedChannels.has(DATA.rows[i][1]);
   const mode = $("mode").value;
 
   // Semantic half. Full scan: 168k x 192 is ~32M multiply-adds, fast enough.
   let semOrder = [];
+  lastQueryVec = null;
   if (mode !== "keyword") {
     const q = await embedQuery(query);
     const scores = new Float32Array(n);
@@ -310,19 +483,112 @@ async function search() {
   statusEl.textContent = `${top.length} results`;
   const texts = await Promise.all(top.map(textFor));
 
+  const re = termRegex(queryTerms(query));
+  const inline = META.inline_chars || 220;
+
   resultsEl.innerHTML = top.map((i, k) => {
     const [vi, ci, ti, start] = DATA.rows[i];
     const url = `https://youtu.be/${DATA.videos[vi]}?t=${start}`;
-    const esc = (s) => s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
-    return `<div class="hit">
+    const full = texts[k];
+    let fullHtml = esc(full);
+    if (re) { re.lastIndex = 0; fullHtml = fullHtml.replace(re, (m) => `<mark>${m}</mark>`); }
+    return `<div class="hit" data-k="${k}" tabindex="0">
       <div class="meta"><span class="chan">${esc(DATA.channels[ci])}</span></div>
       <div class="title"><a href="${url}" target="_blank" rel="noopener">${esc(DATA.titles[ti])}</a></div>
-      <div class="quote"><a class="stamp" href="${url}" target="_blank" rel="noopener">${hhmmss(start)}</a>${esc(texts[k])}</div>
+      <div class="quote">
+        <a class="stamp" href="${url}" target="_blank" rel="noopener">${hhmmss(start)}</a><span
+          class="short">${renderQuote(full, re, inline)}</span><span
+          class="full">${fullHtml}</span>
+      </div>
     </div>`;
   }).join("");
 
   $("go").disabled = false;
+
+  // Results that matched on meaning alone have no word to mark, so find the
+  // sentence closest to the query and mark that instead. Done after painting,
+  // because it costs a second round of embedding.
+  markBestSentences(top, texts, re);
 }
+
+// For results with no literal word match, mark the sentence closest in meaning
+// to the query. Only the handful of shown results are embedded, so this is a
+// few dozen short texts rather than the whole corpus.
+async function markBestSentences(top, texts, re) {
+  const needy = [];
+  top.forEach((_, k) => {
+    if (re) { re.lastIndex = 0; if (re.test(texts[k])) return; }   // already marked
+    needy.push(k);
+  });
+  if (!needy.length) return;
+
+  const jobs = [];
+  for (const k of needy) {
+    const sents = texts[k].split(/(?<=[.!?])\s+/).filter((s) => s.split(" ").length >= 5);
+    if (sents.length > 1) jobs.push({ k, sents });
+  }
+  if (!jobs.length) return;
+
+  try {
+    const flat = jobs.flatMap((j) => j.sents);
+    const out = await extractor(flat, { pooling: "mean", normalize: true });
+    const dim = out.dims[out.dims.length - 1];
+    const q = lastQueryVec;
+    if (!q) return;
+    let cursor = 0;
+    for (const j of jobs) {
+      let best = -1, bestScore = -Infinity;
+      for (let s = 0; s < j.sents.length; s++) {
+        let dot = 0;
+        const base = (cursor + s) * dim;
+        for (let d = 0; d < dim; d++) dot += q[d] * out.data[base + d];
+        if (dot > bestScore) { bestScore = dot; best = s; }
+      }
+      cursor += j.sents.length;
+      const el = resultsEl.querySelector(`.hit[data-k="${j.k}"]`);
+      if (!el || best < 0) continue;
+      const sentence = j.sents[best];
+      const mark = (node) => {
+        const i = node.textContent.indexOf(sentence.slice(0, 60));
+        if (i === -1) return;
+        node.innerHTML = esc(node.textContent.slice(0, i))
+          + "<mark>" + esc(node.textContent.slice(i, i + sentence.length)) + "</mark>"
+          + esc(node.textContent.slice(i + sentence.length));
+      };
+      mark(el.querySelector(".full"));
+      // Re-centre the short form on the matching sentence.
+      const shortEl = el.querySelector(".short");
+      const w = centreWindow(texts[j.k],
+        new RegExp(sentence.slice(0, 40).replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g"),
+        META.inline_chars || 220);
+      shortEl.innerHTML = (w.truncStart ? "…" : "") + esc(w.text) + (w.truncEnd ? "…" : "");
+      mark(shortEl);
+    }
+  } catch (e) {
+    console.warn("sentence marking skipped:", e);
+  }
+}
+
+// Dark is the default; remember an explicit choice.
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme === "light") document.documentElement.setAttribute("data-theme", "light");
+const syncThemeButton = () =>
+  $("theme").textContent =
+    document.documentElement.getAttribute("data-theme") === "light" ? "Dark mode" : "Light mode";
+syncThemeButton();
+$("theme").addEventListener("click", () => {
+  const light = document.documentElement.getAttribute("data-theme") === "light";
+  if (light) { document.documentElement.removeAttribute("data-theme"); localStorage.setItem("theme", "dark"); }
+  else { document.documentElement.setAttribute("data-theme", "light"); localStorage.setItem("theme", "light"); }
+  syncThemeButton();
+});
+
+// Hover does not exist on touch, so tapping a result expands it too.
+resultsEl.addEventListener("click", (e) => {
+  if (e.target.closest("a")) return;
+  const hit = e.target.closest(".hit");
+  if (hit) hit.classList.toggle("open");
+});
 
 $("go").addEventListener("click", search);
 $("q").addEventListener("keydown", (e) => { if (e.key === "Enter") search(); });
