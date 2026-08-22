@@ -3,674 +3,210 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Alternative Ancient History — Video Search</title>
-<meta name="description" content="Search across YouTube channels covering alternative ancient history — megalithic building, lost technology, catastrophe and myth — by describing what you half-remember. Every result links to the creator's video at the moment it was said.">
+<title>Alternative Ancient History — Summarized</title>
+<meta name="description" content="Why questioning the mainstream account of ancient history is sometimes legitimate — the arguments, the evidence behind them, and where they stop.">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js"></script>
 <style>
-  /* Dark is the default here, not a system-preference fallback. Light is
-     available through the toggle, which stamps data-theme="light". */
-  :root {
-    --bg: #14130f; --fg: #ede7dc; --muted: #9c9488; --line: #2e2a24;
-    --card: #1c1a16; --accent: #d8a15f; --chip: #272420;
-    --markbg: #6b5010; --semhi: #1d4a52;
+  /* The whole page is one mechanism: a claim you can open into the argument,
+     and an argument you can open into the evidence. Built on <details> so it
+     works with no JavaScript and so the browser handles keyboard and find-in-page. */
+  .stage { margin: 0 0 30px; }
+  .stage > h2 {
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); font-weight: 700; margin: 0 0 10px;
+    display: flex; align-items: center; gap: 10px;
   }
-  :root[data-theme="light"] {
-    --bg: #fbfaf8; --fg: #1c1a17; --muted: #6b6560; --line: #e2ddd6;
-    --card: #ffffff; --accent: #8a5320; --chip: #f0ebe4;
-    --markbg: #ffe08a; --semhi: #b6e3ea;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--bg); color: var(--fg);
-    font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  }
-  .wrap { max-width: 820px; margin: 0 auto; padding: 32px 20px 80px; }
-  .kicker {
-    font-size: 0.75rem; letter-spacing: 0.09em; text-transform: uppercase;
-    color: var(--accent); margin: 0 0 6px; font-weight: 600;
-  }
-  h1 { font-size: 1.5rem; margin: 0 0 4px; letter-spacing: -0.01em; }
-  .sub { color: var(--muted); font-size: 0.9rem; margin: 0 0 24px; }
-  .searchbar { display: flex; gap: 8px; margin-bottom: 10px; }
-  input[type=search] {
-    flex: 1; padding: 12px 14px; font-size: 1rem; border-radius: 8px;
-    border: 1px solid var(--line); background: var(--card); color: var(--fg);
-  }
-  input[type=search]:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
-  button {
-    padding: 12px 18px; font-size: 1rem; border-radius: 8px; cursor: pointer;
-    border: 1px solid var(--accent); background: var(--accent); color: #fff;
-  }
-  button:disabled { opacity: 0.5; cursor: default; }
-  select {
-    padding: 7px 10px; border-radius: 7px; border: 1px solid var(--line);
-    background: var(--card); color: var(--fg); font-size: 0.85rem;
-  }
-  .controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
-              font-size: 0.85rem; color: var(--muted); margin-bottom: 22px; }
-  .examples { margin: 0 0 22px; font-size: 0.85rem; color: var(--muted); }
-  .examples button {
-    background: var(--chip); color: var(--fg); border: 1px solid var(--line);
-    padding: 5px 10px; font-size: 0.8rem; border-radius: 999px; margin: 3px 4px 0 0;
-  }
-  .status { color: var(--muted); font-size: 0.9rem; padding: 10px 0; }
-  .bar { height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; margin-top: 8px; }
-  .bar > div { height: 100%; background: var(--accent); width: 0; transition: width 0.2s; }
-  .hit {
+  .stage > h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .step { font-variant-numeric: tabular-nums; color: var(--accent); }
+
+  details.claim {
     background: var(--card); border: 1px solid var(--line); border-radius: 10px;
-    padding: 14px 16px; margin-bottom: 12px;
+    margin-bottom: 10px; overflow: hidden;
   }
-  .hit .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 6px; }
-  .hit .chan { color: var(--accent); font-weight: 600; }
-  .hit .title { font-weight: 600; margin-bottom: 8px; line-height: 1.35; }
-  .hit .title a { color: inherit; text-decoration: none; }
-  .hit .title a:hover { text-decoration: underline; }
-  .hit .quote { font-size: 0.92rem; color: var(--fg); }
-  .hit .stamp {
-    display: inline-block; font-variant-numeric: tabular-nums; font-size: 0.8rem;
-    background: var(--chip); border-radius: 5px; padding: 1px 7px; margin-right: 8px;
-    color: var(--accent); text-decoration: none; font-weight: 600;
-    border: 1px solid var(--line); white-space: nowrap;
+  details.claim > summary {
+    cursor: pointer; padding: 13px 16px; list-style: none;
+    font-size: 1rem; line-height: 1.45; font-weight: 600;
+    display: flex; gap: 11px; align-items: flex-start;
   }
-  .hit .stamp:hover { border-color: var(--accent); }
-  .hit .chan a { color: var(--accent); text-decoration: none; }
-  .hit .chan a:hover { text-decoration: underline; }
-  .warn {
-    font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--line);
-    margin-top: 28px; padding-top: 14px;
+  details.claim > summary::-webkit-details-marker { display: none; }
+  details.claim > summary::before {
+    content: "+"; color: var(--accent); font-weight: 700; line-height: 1.45;
+    flex: 0 0 auto; width: 12px;
   }
+  details.claim[open] > summary::before { content: "\2212"; }
+  details.claim > summary:hover { background: var(--chip); }
+  details.claim[open] { border-color: var(--accent); }
 
-  /* Why a result matched */
-  mark { background: var(--markbg); color: var(--fg); border-radius: 3px; padding: 0 2px; }
+  .body { padding: 0 16px 15px 39px; }
+  .body > p { margin: 0 0 12px; font-size: 0.94rem; }
 
-  /* The sentence the meaning matched on, as opposed to a literal word match */
-  .sem { background: var(--semhi); border-radius: 3px; padding: 0 2px; }
-  /* A word match inside the matched sentence keeps its own colour on top. */
-  .sem mark { background: var(--markbg); }
+  /* Second layer: the evidence under one argument. Flatter than the claim, so the
+     nesting reads as depth rather than as another list of equals. */
+  details.ev { border-left: 2px solid var(--line); margin: 0 0 8px; padding-left: 12px; }
+  details.ev > summary {
+    cursor: pointer; list-style: none; font-size: 0.83rem; color: var(--accent);
+    padding: 3px 0; font-weight: 600;
+  }
+  details.ev > summary::-webkit-details-marker { display: none; }
+  details.ev > summary::after { content: " \203A"; }
+  details.ev[open] > summary::after { content: " \2304"; }
+  details.ev[open] { border-left-color: var(--accent); }
+  .ev .inner { font-size: 0.87rem; color: var(--muted); padding: 6px 0 10px; }
+  .ev .inner p { margin: 0 0 9px; }
 
-  /* Short by default, whole passage when expanded */
-  .hit .full { display: none; }
-  .hit.open .short { display: none; }
-  .hit.open .full { display: inline; }
-  .hit { transition: border-color 0.15s; }
-  .hit:hover { border-color: var(--accent); }
-  .more {
-    display: inline-block; margin-top: 8px; padding: 3px 9px; font-size: 0.75rem;
-    background: var(--chip); color: var(--muted); border: 1px solid var(--line);
-    border-radius: 999px; cursor: pointer;
+  .srcs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .srcs a, .srcs span {
+    font-size: 0.75rem; background: var(--chip); border: 1px solid var(--line);
+    border-radius: 999px; padding: 3px 9px; color: var(--muted); text-decoration: none;
   }
-  .more:hover { color: var(--fg); border-color: var(--accent); }
-  .legend { font-size: 0.78rem; color: var(--muted); margin: 0 0 14px; }
-  .legend .sem, .legend mark { padding: 0 4px; }
+  .srcs a:hover { color: var(--fg); border-color: var(--accent); }
 
-  /* Channel picker */
-  .picker { position: relative; display: inline-block; }
-  .picker > button {
-    background: var(--card); color: var(--fg); border: 1px solid var(--line);
-    padding: 7px 10px; font-size: 0.85rem; border-radius: 7px;
-  }
-  .panel {
-    display: none; position: absolute; z-index: 20; top: 110%; left: 0;
-    background: var(--card); border: 1px solid var(--line); border-radius: 9px;
-    padding: 8px; width: 290px; max-height: 320px; overflow-y: auto;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.35);
-  }
-  .picker.open .panel { display: block; }
-  .panel label {
-    display: flex; align-items: center; gap: 8px; padding: 5px 6px;
-    border-radius: 6px; cursor: pointer; color: var(--fg); font-size: 0.85rem;
-  }
-  .panel label:hover { background: var(--chip); }
-  .panel .tools {
-    display: flex; gap: 6px; padding: 2px 4px 8px; border-bottom: 1px solid var(--line);
-    margin-bottom: 6px;
-  }
-  .panel .tools button {
-    flex: 1; background: var(--chip); color: var(--fg); border: 1px solid var(--line);
-    font-size: 0.75rem; padding: 4px 6px; border-radius: 6px;
-  }
-  .panel .count { color: var(--muted); font-size: 0.75rem; margin-left: auto; }
-  #theme {
-    margin-left: auto; background: var(--chip); color: var(--muted);
-    border: 1px solid var(--line); border-radius: 8px;
-    width: 32px; height: 32px; padding: 0; line-height: 1;
-    display: inline-flex; align-items: center; justify-content: center;
-  }
-  #theme:hover { color: var(--fg); border-color: var(--accent); }
-  #theme svg { width: 16px; height: 16px; }
+  /* Placeholder prose is marked in the markup, not just in tone, so nobody
+     mistakes scaffolding for a finished argument. */
+  .fill { color: var(--muted); font-style: italic; }
+  .fill::before { content: "\201C"; }
+  .fill::after { content: "\201D"; }
 </style>
 </head>
 <body>
+<nav class="nav"><div class="inner">
+  <a class="brand" href="./">Alternative Ancient History <span>Summarized</span></a>
+  <a class="tab" href="./" aria-current="page">Why</a>
+  <a class="tab" href="search/">Search transcripts</a>
+  <a class="tab" href="kb/">Knowledge base</a>
+  <a class="tab soon" href="gallery/">Gallery</a>
+  <button type="button" id="theme" aria-label="Switch theme" title="Switch theme"></button>
+</div></nav>
+
 <div class="wrap">
-  <p class="kicker" id="kicker">Alternative ancient history</p>
-  <h1>What are you trying to find?</h1>
+  <p class="kicker">Why alternative ancient history?</p>
+  <h1>Some of it is nonsense. Not all of it.</h1>
   <p class="sub">
-    Half-remembered is fine. Describe it in your own words and this will find where
-    someone said it — it matches on meaning, not just on matching words. Exact names
-    like <em>Puma Punku</em> work too.
+    Each line below is a claim. Open it for the argument. Open the argument for the
+    evidence — photographs, figures, and the video where someone makes the case.
   </p>
 
-  <div class="searchbar">
-    <input type="search" id="q" placeholder="I remember something about walls that fit together without mortar…" disabled>
-    <button id="go" disabled>Find</button>
+  <div class="placeholder">
+    <strong>This page is scaffolding.</strong> The structure is real and the mechanism works;
+    every word of argument on it is placeholder text, marked in
+    <span class="fill">quoted italics</span>. The arguments get written by hand out of the
+    <a href="kb/">knowledge base</a>, which is being built first for exactly that reason.
   </div>
-  <div class="controls">
-    <span class="picker" id="chanPicker">
-      <button type="button" id="chanBtn">Channels: all</button>
-      <div class="panel" id="chanPanel">
-        <div class="tools">
-          <button type="button" data-all="1">Select all</button>
-          <button type="button" data-all="0">Clear</button>
-        </div>
-        <div id="chanList"></div>
+
+  <section class="stage">
+    <h2><span class="step">1</span> Flaws in the mainstream story</h2>
+
+    <details class="claim">
+      <summary><span class="fill">A stated problem with the accepted account, in one sentence
+        a sceptical reader would accept as a fair description.</span></summary>
+      <div class="body">
+        <p class="fill">Two or three sentences setting out the argument properly: what the
+          accepted explanation is, where it is asked to do more work than it can, and what
+          specifically does not follow. This layer is where the mainstream position gets stated
+          fairly, because an argument that misrepresents it convinces nobody.</p>
+        <details class="ev">
+          <summary>The evidence</summary>
+          <div class="inner">
+            <p class="fill">What a reader could go and check for themselves: a photograph, a
+              stated figure, a measurement, a count.</p>
+            <div class="srcs">
+              <span>image · placeholder</span>
+              <span>entry · placeholder</span>
+            </div>
+          </div>
+        </details>
+        <details class="ev">
+          <summary>What the mainstream answer is</summary>
+          <div class="inner">
+            <p class="fill">The accepted explanation, stated as its proponents would state it,
+              and then the specific reason it is being questioned here.</p>
+          </div>
+        </details>
       </div>
-    </span>
-    <label>Match on <select id="mode">
-      <option value="hybrid">meaning and words</option>
-      <option value="semantic">meaning only</option>
-      <option value="keyword">words only</option>
-    </select></label>
-    <button type="button" id="theme" aria-label="Switch theme" title="Switch theme"></button>
-  </div>
+    </details>
 
-  <p class="examples">
-    Try one of these — the longer and more descriptive, the better it works:
-    <button class="ex">walls that look the same on opposite sides of the world</button>
-    <button class="ex">why did they leave the obelisk unfinished in the quarry</button>
-    <button class="ex">the oldest layer is better built than what was added on top</button>
-    <button class="ex">flood myths in cultures that never met</button>
-    <button class="ex">Puma Punku</button>
-  </p>
+    <details class="claim">
+      <summary><span class="fill">A second flaw, independent of the first — the argument is
+        cumulative, so each one has to stand on its own.</span></summary>
+      <div class="body">
+        <p class="fill">The argument.</p>
+        <details class="ev">
+          <summary>The evidence</summary>
+          <div class="inner"><p class="fill">What is checkable.</p></div>
+        </details>
+      </div>
+    </details>
+  </section>
 
-  <div class="status" id="status">Loading…<div class="bar"><div id="prog"></div></div></div>
-  <p class="legend" id="legend" hidden>
-    <mark>your words</mark> &nbsp; <span class="sem">the part the meaning matched</span>
-  </p>
-  <div id="results"></div>
+  <section class="stage">
+    <h2><span class="step">2</span> Evidence of those flaws</h2>
+    <details class="claim">
+      <summary><span class="fill">A physical thing that is hard to fit into the accepted
+        account — stated as an observation, not yet as a conclusion.</span></summary>
+      <div class="body">
+        <p class="fill">Why this observation is a problem rather than a curiosity.</p>
+        <details class="ev">
+          <summary>Photographs</summary>
+          <div class="inner">
+            <p class="fill">Where the gallery gets used: many images of the same detail, side
+              by side, because that is what makes the point.</p>
+            <div class="srcs"><span>gallery · placeholder</span></div>
+          </div>
+        </details>
+      </div>
+    </details>
+  </section>
 
-  <p class="warn">
-    <strong>What this is.</strong> A search index over the spoken content of YouTube videos about
-    ancient history, built so you can find a moment you half-remember. Every result links to the
-    creator's own video at the timestamp where it was said — that is where the actual material is,
-    and the channels are the ones who made it.
-    <br><br>
-    <strong>Don't quote from here.</strong> The snippets come from auto-generated captions, which
-    are wrong in exactly the places worth citing — proper nouns, numbers and units. They are for
-    <em>finding</em> the moment. Watch the video before relying on any wording.
+  <section class="stage">
+    <h2><span class="step">3</span> Evidence that converges in another direction</h2>
+    <details class="claim">
+      <summary><span class="fill">Separate lines of evidence that point the same way — the step
+        where the argument stops being a list of anomalies.</span></summary>
+      <div class="body">
+        <p class="fill">Which lines, and why their agreement is more than coincidence.</p>
+        <details class="ev">
+          <summary>The lines, one by one</summary>
+          <div class="inner"><p class="fill">Each with its own evidence.</p></div>
+        </details>
+      </div>
+    </details>
+  </section>
+
+  <section class="stage">
+    <h2><span class="step">4</span> The speculation that follows</h2>
+    <details class="claim">
+      <summary><span class="fill">What it would take to explain the above — marked clearly as
+        speculation, because the previous three stages are not.</span></summary>
+      <div class="body">
+        <p class="fill">The reasoning, and the point at which it leaves the evidence behind.
+          Saying where that line is, out loud, is what makes the rest credible.</p>
+        <details class="ev">
+          <summary>What this does not establish</summary>
+          <div class="inner"><p class="fill">The honest limits.</p></div>
+        </details>
+      </div>
+    </details>
+  </section>
+
+  <section class="stage">
+    <h2><span class="step">5</span> The alternative theories themselves</h2>
+    <details class="claim">
+      <summary><span class="fill">A named theory, what it actually claims, and how much of the
+        above it accounts for.</span></summary>
+      <div class="body">
+        <p class="fill">Including the ones that do not survive contact with the evidence.
+          Sorting the strong from the weak is the point; treating them all as one thing is the
+          mistake this site exists to correct.</p>
+      </div>
+    </details>
+  </section>
+
+  <p class="foot">
+    Built on two searchable indexes: the <a href="search/">raw transcripts</a> of ~4,500 videos
+    across 22 channels, and a <a href="kb/">knowledge base</a> of summarised ones. Both search on
+    meaning, so you can describe what you are looking for instead of guessing the keyword.
   </p>
 </div>
-
-<script type="module">
-import { pipeline, env } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.5.1";
-
-env.allowLocalModels = false;
-
-const $ = (id) => document.getElementById(id);
-const statusEl = $("status"), progEl = $("prog"), resultsEl = $("results");
-
-const setStatus = (msg, pct) => {
-  statusEl.innerHTML = msg + '<div class="bar"><div id="prog"></div></div>';
-  if (pct != null) $("prog").style.width = (pct * 100).toFixed(0) + "%";
-};
-
-const esc = (s) => s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
-
-// --- showing why a result matched ---------------------------------------
-// Two different jobs. Literal query words get marked directly. But a result
-// can match on meaning with no word in common at all -- that is the whole
-// point of the embedding half -- so for those the best-matching *sentence*
-// is marked instead, worked out after rendering (see markBestSentences).
-
-const STOP = new Set(("the a an and or of to in is are was were it its that this these those "
-  + "for on at by with from as be been do does did they them their there here what which who "
-  + "how why when where i you we he she his her not no so if then than about into over under "
-  + "can could would should will just like some more most other same").split(" "));
-
-function queryTerms(query) {
-  return (query.toLowerCase().match(/[a-z0-9']+/g) || [])
-    .filter((w) => w.length > 2 && !STOP.has(w));
-}
-
-// Match on a prefix so "wall" hits "walls" and "machining" hits "machine".
-function termRegex(terms) {
-  if (!terms.length) return null;
-  const stems = terms.map((t) => t.length > 5 ? t.slice(0, Math.ceil(t.length * 0.75)) : t)
-                     .map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
-  return new RegExp("\\b(" + [...new Set(stems)].join("|") + ")\\w*", "gi");
-}
-
-// Pick the window of `width` characters that covers the most query terms,
-// so the snippet shows the part that actually matched rather than the
-// arbitrary opening of the passage.
-function centreWindow(text, re, width) {
-  if (text.length <= width) return { text, truncStart: false, truncEnd: false };
-  let best = 0, bestScore = -1;
-  if (re) {
-    const hits = [];
-    re.lastIndex = 0;
-    let m;
-    while ((m = re.exec(text)) !== null) hits.push(m.index);
-    for (const h of hits) {
-      const start = Math.max(0, h - Math.floor(width / 3));
-      const score = hits.filter((x) => x >= start && x < start + width).length;
-      if (score > bestScore) { bestScore = score; best = start; }
-    }
-  }
-  let start = Math.max(0, Math.min(best, text.length - width));
-  let end = start + width;
-  if (start > 0) {                       // do not start mid-word
-    const sp = text.indexOf(" ", start);
-    if (sp !== -1 && sp - start < 25) start = sp + 1;
-  }
-  const sp2 = text.lastIndexOf(" ", end);
-  if (sp2 > start + width * 0.6) end = sp2;
-  return { text: text.slice(start, end), truncStart: start > 0, truncEnd: end < text.length };
-}
-
-// Render a window of the passage with two kinds of highlight:
-//   <mark>          a literal query word
-//   <span class=sem> the sentence closest in meaning to the query
-// The second is the interesting one -- it is what the embedding actually
-// matched on, and it fires even when no word is shared with the query.
-function highlight(text, re, sem) {
-  const parts = sem
-    ? [[text.slice(0, sem[0]), false], [text.slice(sem[0], sem[1]), true], [text.slice(sem[1]), false]]
-    : [[text, false]];
-  return parts.map(([chunk, isSem]) => {
-    let html = esc(chunk);
-    if (re) { re.lastIndex = 0; html = html.replace(re, (m) => `<mark>${m}</mark>`); }
-    return isSem ? `<span class="sem">${html}</span>` : html;
-  }).join("");
-}
-
-// Show the part that actually matched, not the arbitrary opening of the
-// passage. Prefers the query words; falls back to the matched sentence.
-function renderQuote(text, re, width, sem) {
-  let anchor = re;
-  if (sem && (!re || (re.lastIndex = 0, !re.test(text)))) {
-    anchor = new RegExp(escapeRe(text.slice(sem[0], Math.min(sem[1], sem[0] + 40))), "g");
-  }
-  const w = centreWindow(text, anchor, width);
-  const offset = text.indexOf(w.text);
-  let localSem = null;
-  if (sem && offset !== -1) {
-    const a = Math.max(0, sem[0] - offset), b = Math.min(w.text.length, sem[1] - offset);
-    if (b > a) localSem = [a, b];
-  }
-  return (w.truncStart ? "…" : "") + highlight(w.text, re, localSem) + (w.truncEnd ? "…" : "");
-}
-
-function escapeRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
-
-const hhmmss = (s) => {
-  const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), x = Math.floor(s % 60);
-  return h ? `${h}:${String(m).padStart(2,"0")}:${String(x).padStart(2,"0")}`
-           : `${m}:${String(x).padStart(2,"0")}`;
-};
-
-let META, DATA, VECS, PROJ, extractor;
-let lastQueryVec = null;   // unprojected, for sentence marking
-let TERMS, POSTINGS, DOCLEN, TERM_IX;
-const shardCache = new Map();
-
-// --- keyword half: BM25 over a delta-varint postings list ----------------
-const K1 = 1.2, B = 0.75;
-
-function postingsFor(termIndex) {
-  const start = TERMS.offsets[termIndex];
-  const end = termIndex + 1 < TERMS.offsets.length
-    ? TERMS.offsets[termIndex + 1] : POSTINGS.length;
-  const docs = [], tfs = [];
-  let p = start, doc = 0;
-  while (p < end) {
-    let shift = 0, value = 0, byte;
-    do { byte = POSTINGS[p++]; value |= (byte & 0x7F) << shift; shift += 7; } while (byte & 0x80);
-    doc += value >>> 2;                 // high bits are the gap
-    docs.push(doc);
-    tfs.push((value & 3) + 1);          // low two bits are tf-1, capped at 3
-  }
-  return { docs, tfs };
-}
-
-function bm25(queryTerms) {
-  const scores = new Map();
-  for (const t of queryTerms) {
-    const ix = TERM_IX.get(t);
-    if (ix === undefined) continue;     // unknown or dropped as too common
-    const df = TERMS.dfs[ix];
-    const idf = Math.log(1 + (TERMS.docs - df + 0.5) / (df + 0.5));
-    const { docs, tfs } = postingsFor(ix);
-    for (let i = 0; i < docs.length; i++) {
-      const d = docs[i], tf = tfs[i];
-      const norm = 1 - B + B * (DOCLEN[d] / TERMS.avg_len);
-      const add = idf * (tf * (K1 + 1)) / (tf + K1 * norm);
-      scores.set(d, (scores.get(d) || 0) + add);
-    }
-  }
-  return scores;
-}
-
-async function boot() {
-  setStatus("Loading index…", 0.05);
-  META = await (await fetch("data/meta.json")).json();
-  DATA = await (await fetch("data/chunks.json")).json();
-
-  setStatus("Loading vectors…", 0.2);
-  VECS = new Int8Array(await (await fetch("data/vectors.i8")).arrayBuffer());
-  if (META.projection) {
-    PROJ = new Float32Array(await (await fetch("data/projection.f32")).arrayBuffer());
-  }
-
-  if (META.keyword) {
-    setStatus("Loading keyword index…", 0.35);
-    TERMS = await (await fetch("data/terms.json")).json();
-    POSTINGS = new Uint8Array(await (await fetch("data/postings.bin")).arrayBuffer());
-    DOCLEN = new Uint16Array(await (await fetch("data/doclen.u16")).arrayBuffer());
-    TERM_IX = new Map(TERMS.terms.map((t, i) => [t, i]));
-  }
-
-  setStatus("Loading the embedding model (first visit only, then cached)…", 0.45);
-  extractor = await pipeline("feature-extraction", META.model, {
-    dtype: "q8",
-    progress_callback: (p) => {
-      if (p.status === "progress" && p.total) {
-        setStatus("Loading the embedding model…", 0.45 + 0.5 * (p.loaded / p.total));
-      }
-    },
-  });
-
-  buildChannelPicker();
-
-  $("kicker").textContent =
-    `Alternative ancient history · ${DATA.videos.length.toLocaleString()} videos · `
-    + `${DATA.channels.length} channels · ${DATA.rows.length.toLocaleString()} passages`;
-
-  $("q").disabled = false; $("go").disabled = false;
-  statusEl.textContent = "Ready.";
-  $("q").focus();
-}
-
-async function embedQuery(text) {
-  const out = await extractor(META.query_prefix + text, { pooling: "mean", normalize: true });
-  let v = Float32Array.from(out.data);
-  lastQueryVec = v;                        // before projection, to match sentence vectors
-  if (PROJ) {
-    const d = META.dim, src = META.source_dim, r = new Float32Array(d);
-    for (let i = 0; i < d; i++) {
-      let s = 0;
-      for (let j = 0; j < src; j++) s += PROJ[i * src + j] * v[j];
-      r[i] = s;
-    }
-    let n = 0; for (let i = 0; i < d; i++) n += r[i] * r[i];
-    n = Math.sqrt(n) || 1;
-    for (let i = 0; i < d; i++) r[i] /= n;
-    v = r;
-  }
-  return v;
-}
-
-async function textFor(idx) {
-  const shard = Math.floor(idx / META.shard_size);
-  if (!shardCache.has(shard)) {
-    shardCache.set(shard, fetch(`data/text/${shard}.json`).then((r) => r.json()));
-  }
-  return (await shardCache.get(shard))[idx % META.shard_size];
-}
-
-// --- channel picker: multi-select, because filtering to a couple of channels
-// is more useful than to exactly one ------------------------------------
-const selectedChannels = new Set();     // empty means "all"
-
-function channelCounts() {
-  const n = new Map();
-  for (const r of DATA.rows) n.set(r[1], (n.get(r[1]) || 0) + 1);
-  return n;
-}
-
-function updateChannelButton() {
-  const btn = $("chanBtn");
-  if (selectedChannels.size === 0 || selectedChannels.size === DATA.channels.length) {
-    btn.textContent = "Channels: all";
-  } else if (selectedChannels.size === 1) {
-    btn.textContent = "Channel: " + DATA.channels[[...selectedChannels][0]];
-  } else {
-    btn.textContent = `Channels: ${selectedChannels.size} selected`;
-  }
-}
-
-function buildChannelPicker() {
-  const counts = channelCounts();
-  const list = $("chanList");
-  list.innerHTML = DATA.channels
-    .map((c, i) => [c, i])
-    .sort((a, b) => a[0].localeCompare(b[0]))
-    .map(([c, i]) =>
-      `<label><input type="checkbox" value="${i}">
-         <span>${esc(c)}</span>
-         <span class="count">${(counts.get(i) || 0).toLocaleString()}</span>
-       </label>`).join("");
-
-  list.addEventListener("change", (e) => {
-    const ix = Number(e.target.value);
-    if (e.target.checked) selectedChannels.add(ix); else selectedChannels.delete(ix);
-    updateChannelButton();
-  });
-
-  $("chanPanel").querySelectorAll("[data-all]").forEach((b) =>
-    b.addEventListener("click", () => {
-      const on = b.dataset.all === "1";
-      selectedChannels.clear();
-      list.querySelectorAll("input").forEach((cb) => {
-        cb.checked = on;
-        if (on) selectedChannels.add(Number(cb.value));
-      });
-      updateChannelButton();
-    }));
-
-  $("chanBtn").addEventListener("click", (e) => {
-    e.stopPropagation();
-    $("chanPicker").classList.toggle("open");
-  });
-  $("chanPanel").addEventListener("click", (e) => e.stopPropagation());
-  document.addEventListener("click", () => $("chanPicker").classList.remove("open"));
-  updateChannelButton();
-}
-
-async function search() {
-  const query = $("q").value.trim();
-  if (!query) return;
-  $("go").disabled = true;
-  setStatus("Searching…");
-  resultsEl.innerHTML = "";
-
-  const d = META.dim, n = DATA.rows.length;
-  const filtering = selectedChannels.size > 0 && selectedChannels.size < DATA.channels.length;
-  const allowed = (i) => !filtering || selectedChannels.has(DATA.rows[i][1]);
-  const mode = $("mode").value;
-
-  // Semantic half. Full scan: 168k x 192 is ~32M multiply-adds, fast enough.
-  let semOrder = [];
-  lastQueryVec = null;
-  if (mode !== "keyword") {
-    const q = await embedQuery(query);
-    const scores = new Float32Array(n);
-    for (let i = 0; i < n; i++) {
-      if (!allowed(i)) { scores[i] = -Infinity; continue; }
-      let s = 0;
-      const base = i * d;
-      for (let j = 0; j < d; j++) s += q[j] * VECS[base + j];
-      scores[i] = s;
-    }
-    semOrder = Array.from(scores.keys())
-      .filter((i) => scores[i] > -Infinity)
-      .sort((a, b) => scores[b] - scores[a])
-      .slice(0, 100);
-  }
-
-  // Keyword half.
-  let kwOrder = [];
-  if (mode !== "semantic" && META.keyword) {
-    const qTerms = (query.toLowerCase().match(/[a-z0-9']+/g) || []);
-    kwOrder = [...bm25(qTerms).entries()]
-      .filter(([i]) => allowed(i))
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 100)
-      .map(([i]) => i);
-  }
-
-  // Reciprocal rank fusion: combines by rank position, so the two scoring
-  // scales never have to be made comparable.
-  const RRF_K = 60, fused = new Map();
-  const add = (list) => list.forEach((i, rank) =>
-    fused.set(i, (fused.get(i) || 0) + 1 / (RRF_K + rank + 1)));
-  add(semOrder); add(kwOrder);
-
-  const order = [...fused.entries()].sort((a, b) => b[1] - a[1]).map(([i]) => i);
-
-  // One hit per video, so a single long podcast cannot fill the whole page.
-  const seen = new Set(), top = [];
-  for (const i of order) {
-    const vid = DATA.rows[i][0];
-    if (seen.has(vid)) continue;
-    seen.add(vid);
-    top.push(i);
-    if (top.length >= 12) break;
-  }
-
-  statusEl.textContent = `${top.length} results`;
-  $("legend").hidden = false;
-  const texts = await Promise.all(top.map(textFor));
-
-  const re = termRegex(queryTerms(query));
-  const inline = META.inline_chars || 220;
-
-  resultsEl.innerHTML = top.map((i, k) => {
-    const [vi, ci, ti, start] = DATA.rows[i];
-    const url = `https://youtu.be/${DATA.videos[vi]}?t=${start}`;
-    const full = texts[k];
-    let fullHtml = esc(full);
-    if (re) { re.lastIndex = 0; fullHtml = fullHtml.replace(re, (m) => `<mark>${m}</mark>`); }
-    const chanUrl = (DATA.channel_urls || [])[ci];
-    const chanName = esc(DATA.channels[ci]);
-    return `<div class="hit" data-k="${k}">
-      <div class="meta"><span class="chan">${chanUrl
-        ? `<a href="${chanUrl}" target="_blank" rel="noopener">${chanName}</a>` : chanName}</span></div>
-      <div class="title"><a href="${url}" target="_blank" rel="noopener">${esc(DATA.titles[ti])}</a></div>
-      <div class="quote">
-        <a class="stamp" href="${url}" target="_blank" rel="noopener">${hhmmss(start)}</a><span
-          class="short">${renderQuote(full, re, inline)}</span><span
-          class="full">${fullHtml}</span>
-      </div>
-      <span class="more" role="button" tabindex="0">Show the whole passage</span>
-    </div>`;
-  }).join("");
-
-  $("go").disabled = false;
-
-  // Results that matched on meaning alone have no word to mark, so find the
-  // sentence closest to the query and mark that instead. Done after painting,
-  // because it costs a second round of embedding.
-  markBestSentences(top, texts, re);
-}
-
-// For results with no literal word match, mark the sentence closest in meaning
-// to the query. Only the handful of shown results are embedded, so this is a
-// few dozen short texts rather than the whole corpus.
-async function markBestSentences(top, texts, re) {
-  // Runs for every shown result, not only the ones with no word in common.
-  // Exact-word marks answer "which of my words appear"; this answers the more
-  // useful question, "which part of this did the meaning match".
-  const jobs = [];
-  top.forEach((_, k) => {
-    const sents = texts[k].split(/(?<=[.!?])\s+/).filter((s) => s.split(" ").length >= 5);
-    if (sents.length > 1) jobs.push({ k, sents });
-  });
-  const q = lastQueryVec;
-  if (!jobs.length || !q) return;
-
-  try {
-    const flat = jobs.flatMap((j) => j.sents);
-    const out = await extractor(flat, { pooling: "mean", normalize: true });
-    const dim = out.dims[out.dims.length - 1];
-    const inline = META.inline_chars || 220;
-    let cursor = 0;
-
-    for (const j of jobs) {
-      let best = -1, bestScore = -Infinity;
-      for (let s = 0; s < j.sents.length; s++) {
-        let dot = 0;
-        const base = (cursor + s) * dim;
-        for (let d = 0; d < dim; d++) dot += q[d] * out.data[base + d];
-        if (dot > bestScore) { bestScore = dot; best = s; }
-      }
-      cursor += j.sents.length;
-
-      const el = resultsEl.querySelector(`.hit[data-k="${j.k}"]`);
-      if (!el || best < 0) continue;
-
-      const text = texts[j.k];
-      const at = text.indexOf(j.sents[best]);
-      if (at === -1) continue;
-      const sem = [at, at + j.sents[best].length];
-
-      el.querySelector(".short").innerHTML = renderQuote(text, re, inline, sem);
-      el.querySelector(".full").innerHTML = highlight(text, re, sem);
-    }
-  } catch (e) {
-    console.warn("sentence marking skipped:", e);
-  }
-}
-
-// Dark is the default; remember an explicit choice.
-const savedTheme = localStorage.getItem("theme");
-if (savedTheme === "light") document.documentElement.setAttribute("data-theme", "light");
-const MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
-  + 'stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3'
-  + 'a7 7 0 0 0 9.8 9.8z"/></svg>';
-const SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
-  + 'stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/>'
-  + '<path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2'
-  + 'M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
-const syncThemeButton = () => {
-  const light = document.documentElement.getAttribute("data-theme") === "light";
-  const btn = $("theme");
-  // Show the theme you would switch *to*, which is the usual convention.
-  btn.innerHTML = light ? MOON : SUN;
-  btn.title = light ? "Switch to dark" : "Switch to light";
-  btn.setAttribute("aria-label", btn.title);
-};
-syncThemeButton();
-$("theme").addEventListener("click", () => {
-  const light = document.documentElement.getAttribute("data-theme") === "light";
-  if (light) { document.documentElement.removeAttribute("data-theme"); localStorage.setItem("theme", "dark"); }
-  else { document.documentElement.setAttribute("data-theme", "light"); localStorage.setItem("theme", "light"); }
-  syncThemeButton();
-});
-
-// Hover does not exist on touch, so tapping a result expands it too.
-function toggleHit(hit) {
-  if (!hit) return;
-  hit.classList.toggle("open");
-  const btn = hit.querySelector(".more");
-  if (btn) btn.textContent = hit.classList.contains("open")
-    ? "Show less" : "Show the whole passage";
-}
-resultsEl.addEventListener("click", (e) => {
-  if (e.target.closest("a")) return;
-  toggleHit(e.target.closest(".hit"));
-});
-resultsEl.addEventListener("keydown", (e) => {
-  if ((e.key === "Enter" || e.key === " ") && e.target.classList.contains("more")) {
-    e.preventDefault();
-    toggleHit(e.target.closest(".hit"));
-  }
-});
-
-$("go").addEventListener("click", search);
-$("q").addEventListener("keydown", (e) => { if (e.key === "Enter") search(); });
-document.querySelectorAll(".ex").forEach((b) =>
-  b.addEventListener("click", () => { $("q").value = b.textContent.trim(); search(); }));
-
-boot().catch((e) => { statusEl.textContent = "Failed to load: " + e.message; console.error(e); });
-</script>
 </body>
 </html>

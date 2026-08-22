@@ -1,0 +1,86 @@
+/* Shared chrome for every page on the site.
+ *
+ * The palette is the one the search page established. Dark is the default --
+ * not a system-preference fallback -- and an explicit choice stamps
+ * data-theme="light" on <html> and is remembered. Page-specific CSS stays in
+ * the page; only the tokens and the things every page shows live here. */
+
+:root {
+  --bg: #14130f; --fg: #ede7dc; --muted: #9c9488; --line: #2e2a24;
+  --card: #1c1a16; --accent: #d8a15f; --chip: #272420;
+  --markbg: #6b5010; --semhi: #1d4a52;
+}
+:root[data-theme="light"] {
+  --bg: #fbfaf8; --fg: #1c1a17; --muted: #6b6560; --line: #e2ddd6;
+  --card: #ffffff; --accent: #8a5320; --chip: #f0ebe4;
+  --markbg: #ffe08a; --semhi: #b6e3ea;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+a { color: var(--accent); }
+
+/* ---- top bar ------------------------------------------------------- */
+
+.nav {
+  border-bottom: 1px solid var(--line); background: var(--bg);
+}
+.nav .inner {
+  max-width: 820px; margin: 0 auto; padding: 10px 20px;
+  display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+}
+.nav .brand {
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.02em;
+  color: var(--fg); text-decoration: none; margin-right: 10px;
+}
+.nav .brand span { color: var(--accent); }
+.nav a.tab {
+  font-size: 0.83rem; color: var(--muted); text-decoration: none;
+  padding: 5px 9px; border-radius: 7px; border: 1px solid transparent;
+  white-space: nowrap;
+}
+.nav a.tab:hover { color: var(--fg); background: var(--chip); }
+.nav a.tab[aria-current="page"] {
+  color: var(--fg); background: var(--chip); border-color: var(--line);
+}
+.nav a.tab.soon { opacity: 0.55; }
+.nav a.tab.soon::after {
+  content: "soon"; font-size: 0.62rem; margin-left: 5px; padding: 1px 4px;
+  border: 1px solid var(--line); border-radius: 4px; vertical-align: 1px;
+}
+
+/* The toggle sits at the far right of the bar on every page. */
+#theme {
+  margin-left: auto; background: var(--chip); color: var(--muted);
+  border: 1px solid var(--line); border-radius: 8px; cursor: pointer;
+  width: 32px; height: 32px; padding: 0; line-height: 1;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+#theme:hover { color: var(--fg); border-color: var(--accent); }
+#theme svg { width: 16px; height: 16px; }
+
+/* ---- shared page furniture ----------------------------------------- */
+
+.wrap { max-width: 820px; margin: 0 auto; padding: 32px 20px 80px; }
+.kicker {
+  font-size: 0.75rem; letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--accent); margin: 0 0 6px; font-weight: 600;
+}
+h1 { font-size: 1.5rem; margin: 0 0 4px; letter-spacing: -0.01em; }
+.sub { color: var(--muted); font-size: 0.9rem; margin: 0 0 24px; }
+
+/* A page that is deliberately not built yet says so, loudly, so nobody
+   mistakes scaffolding for a finished argument. */
+.placeholder {
+  border: 1px dashed var(--line); border-radius: 10px; background: var(--card);
+  padding: 14px 16px; margin: 0 0 26px; font-size: 0.86rem; color: var(--muted);
+}
+.placeholder strong { color: var(--accent); }
+
+.foot {
+  font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--line);
+  margin-top: 40px; padding-top: 14px;
+}
