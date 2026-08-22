@@ -42,7 +42,9 @@
     display: inline-block; margin-bottom: 16px; font-size: 0.83rem;
     color: var(--muted); text-decoration: none;
   }
-  a.back::before { content: "90"; margin-right: 7px; }
+  /* The literal character, not a CSS escape: this block is a plain Python
+     string, so a backslash-2190 in it reads as the octal escape  then "90". */
+  a.back::before { content: "←"; margin-right: 7px; }
   a.back:hover { color: var(--accent); }
 
   .head { border-bottom: 1px solid var(--line); padding-bottom: 16px; margin-bottom: 22px; }
