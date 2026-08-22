@@ -36,6 +36,15 @@
   th { color: var(--muted); font-size: 0.76rem; text-transform: uppercase;
        letter-spacing: 0.05em; }
 
+  /* Way back out of an entry. The nav has one too, but after scrolling a
+     long summary the top of the article is where you look. */
+  a.back {
+    display: inline-block; margin-bottom: 16px; font-size: 0.83rem;
+    color: var(--muted); text-decoration: none;
+  }
+  a.back::before { content: "90"; margin-right: 7px; }
+  a.back:hover { color: var(--accent); }
+
   .head { border-bottom: 1px solid var(--line); padding-bottom: 16px; margin-bottom: 22px; }
   .chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
   .chips span, .chips a {
@@ -76,13 +85,14 @@
 <nav class="nav"><div class="inner">
   <a class="brand" href="../../../">Alternative Ancient History <span>Summarized</span></a>
   <a class="tab" href="../../../">Why</a>
-  <a class="tab" href="../../../search/">Search transcripts</a>
   <a class="tab" href="../../../kb/" aria-current="page">Knowledge base</a>
+  <a class="tab" href="../../../search/">Search transcripts</a>
   <a class="tab soon" href="../../../gallery/">Gallery</a>
   <button type="button" id="theme" aria-label="Switch theme" title="Switch theme"></button>
 </div></nav>
 
 <div class="wrap">
+<a class="back" href="../../">Knowledge base</a>
 <article>
 <div class="head">
   <p class="kicker">Curious Being</p>
@@ -94,7 +104,6 @@
   </p>
   <div class="chips"><span class="arg">two-industries</span><span class="arg">why</span><span class="arg">how</span><span class="arg">dating</span><span class="arg">convergence</span><span class="arg">cross-continental</span><span>rock-cut-sites</span><span>machining-and-tool-marks</span><span>quarries</span><span>mining</span><span>water-management</span></div>
 </div>
-<h2>The one that argues from bad engineering</h2>
 <p>Shiyan Cave sits on a peak of Mount Xiqiao in southern China, an extinct volcano of 40–50 million years standing between two rivers on the Pearl River Delta <a class="t" href="https://youtu.be/60ku_x0ccPI?t=27" target="_blank" rel="noopener">00:27–01:12</a>. It is conventionally described as an ancient quarry, over 1,000 years old, abandoned when it flooded.</p>
 <p>Cave divers reported the underwater extent in 2009 <a class="t" href="https://youtu.be/60ku_x0ccPI?t=146" target="_blank" rel="noopener">02:26–02:55</a>. The submerged cave is estimated at <strong>60,000 m², about 15 acres</strong>, and because it has been under water it escaped both weathering and vandalism — the walls are preserved and the water is clear. Divers found steps descending, stacked stone slabs of the kind used for paving in ancient China, multiple chambers with connecting passages, and <strong>oil lamp stands, bowls and bamboo ladders</strong>. Archaeologists made a 3D model with laser and sonar. The floor is under thick silt. The deepest anyone has reached is 40 m, and nobody has found the bottom.</p>
 <div class="shot"><figure>
@@ -107,9 +116,9 @@
        data-cap="The main hall from inside, looking out to daylight. A high faceted roof of angular cut planes spans the space; visitors walk on a wet floor that reflects it, with a stepped terrace and planting at the mouth. The people are small enough to give the scale.">
   <figcaption><a class="t" href="https://youtu.be/60ku_x0ccPI?t=109" target="_blank" rel="noopener">0:01:49</a> The main hall from inside, looking out to daylight. A high faceted roof of angular cut planes spans the space; visitors walk on a wet floor that reflects it, with a stepped terrace and planting at the mouth. The people are small enough to give the scale.</figcaption>
 </figure><p class="claim-note">The dry part of the cave, and the scale she says would hold a thousand people. What the divers explored continues below the water from here.</p></div>
-<p>She takes it as three separate puzzles. The third is the one worth the entry.</p>
+<p>She takes it as three separate puzzles. The third is much the strongest.</p>
 <hr>
-<h3>Mystery 1 — the tool marks</h3>
+<h2>Mystery 1 — the tool marks</h2>
 <p>Large, uniform marks on almost straight walls, which she says are "fairly identical" to Yangshan Quarry, Baalbek and Petra <a class="t" href="https://youtu.be/60ku_x0ccPI?t=233" target="_blank" rel="noopener">03:53–04:12</a>. The argument that hand tools cannot produce them is <strong>not made here</strong> — she refers back to her earlier video for it.</p>
 <div class="shot"><div class="pair"><figure>
   <img src="img/f_0038.jpg" alt="a diver beside a large banded cut rock mass underwater" loading="lazy"
@@ -121,7 +130,7 @@
   <figcaption><a class="t" href="https://youtu.be/60ku_x0ccPI?t=239" target="_blank" rel="noopener">0:03:59</a> A diver swimming along a flat cut wall, a guide line running down it. On the floor below lie a large rectangular slab and a smaller round disc of worked stone, left where they were abandoned.</figcaption>
 </figure></div><p class="claim-note">Large regular marks on near-straight faces, preserved because the cave has been under water and untouched since it flooded.</p></div>
 <p>One point is specific to this site and is a good one: <strong>the cave has been under water and untouched</strong>, so whatever made the marks did not make them recently.</p>
-<p>Then the observation that gives this entry its <code>two-industries</code> tag <a class="t" href="https://youtu.be/60ku_x0ccPI?t=299" target="_blank" rel="noopener">04:59–05:13</a>. Inside the same cave there are two qualities of work:</p>
+<p>Then the observation that matters most <a class="t" href="https://youtu.be/60ku_x0ccPI?t=299" target="_blank" rel="noopener">04:59–05:13</a>. Inside the same cave there are two qualities of work:</p>
 <div class="tablewrap"><table><thead><tr><th>the crude work</th><th>the fine work</th></tr></thead><tbody><tr><td>thin stone slabs, steps piled from rubble</td><td>large uniform marks on straight walls</td></tr><tr><td>what a mason with hand tools leaves</td><td>what she argues no hand tool leaves</td></tr></tbody></table></div>
 <p>Her conclusion is that these are <strong>not the same workers</strong> — that Chinese masons of about a thousand years ago reoccupied and quarried an opening that was already there, working the outer parts by oil lamp and never going deep, because hauling slabs out of a fifteen-acre cave by lamplight is not practical.</p>
 <div class="shot"><figure>
@@ -129,7 +138,7 @@
        data-cap="Underwater in green light: a row of tall thin stone slabs stacked on edge against the rock, leaning like books, with more lying flat on the silted floor. The wall behind them carries the regular banding.">
   <figcaption><a class="t" href="https://youtu.be/60ku_x0ccPI?t=301" target="_blank" rel="noopener">0:05:01</a> Underwater in green light: a row of tall thin stone slabs stacked on edge against the rock, leaning like books, with more lying flat on the silted floor. The wall behind them carries the regular banding.<span class="note">Shiyan Cave channel bug, top right</span></figcaption>
 </figure><p class="claim-note">Two qualities of work in the same cave: thin slabs and rubble-piled steps against the large uniform marks on the walls. She argues these are not the same workers.</p></div>
-<h3>Mystery 2 — water 100 m too high</h3>
+<h2>Mystery 2 — water 100 m too high</h2>
 <p>The numbers are the substance here <a class="t" href="https://youtu.be/60ku_x0ccPI?t=326" target="_blank" rel="noopener">05:26–05:55</a>. The cave water stands at over <strong>100 m altitude</strong>. The water table at the two nearby rivers is <strong>less than 3 m above sea level</strong>. So the cave's water sits roughly a hundred metres above the regional water table, on top of a hill.</p>
 <p>She works through it properly <a class="t" href="https://youtu.be/60ku_x0ccPI?t=363" target="_blank" rel="noopener">06:03–07:53</a>:</p>
 <ul><li><strong>A perched aquifer?</strong> One that sits above the regional water table with dry rock below. She rejects it: perched aquifers are typically small and fed by local rainfall, the cave as excavated receives no precipitation, the level is stable, and there is far too much water.</li><li><strong>An artesian aquifer.</strong> Water confined between impermeable layers and under pressure, so it rises to hydrostatic equilibrium rather than running downhill. Mount Xiqiao <strong>has artesian springs</strong>, which is her evidence that at least one confined aquifer exists inside the volcano. If the cave is connected to it, the hundred metres is explained.</li></ul>
@@ -141,7 +150,7 @@
 <p>She adds that the water itself is worth testing — an unusually concrete suggestion.</p>
 <p>A local archaeologist's view is reported straight <a class="t" href="https://youtu.be/60ku_x0ccPI?t=477" target="_blank" rel="noopener">07:57–08:17</a>: the flooding was gradual, perhaps over centuries, because <strong>no human remains and no masonry tools</strong> were found. Whoever was working there had time to leave.</p>
 <p><strong>Then the speculative turn</strong> <a class="t" href="https://youtu.be/60ku_x0ccPI?t=497" target="_blank" rel="noopener">08:17–10:13</a>. If the aquifer predates the cave, was the digging done underwater? She says not necessarily, and offers three options: the workers broke through the impermeable layer themselves; Chinese workers did so a few centuries ago; or <strong>the cave was cut while the aquifer was frozen</strong>, during the Last Glacial Period, with the flooding following post-glacial warming, sea-level rise and increased rainfall.</p>
-<h3>Mystery 3 — nobody digs this to get gravel</h3>
+<h2>Mystery 3 — nobody digs this to get gravel</h2>
 <p>This is the strongest argument in the video, and it needs no claim about tools at all <a class="t" href="https://youtu.be/60ku_x0ccPI?t=619" target="_blank" rel="noopener">10:19–11:50</a>. Grant the conventional reading — a quarry producing crushed stone — and it does not make engineering sense:</p>
 <ul><li><strong>Why underground?</strong> An open pit is easier and safer.</li><li><strong>Why on a hilltop?</strong> The stone has to come up out of a deep cave <em>and then down a mountain</em>. She calls it almost doubling the work.</li><li><strong>Why multiple chambers at different elevations?</strong> If you are extracting bulk stone you keep the working flat and simple. Varying depths make haulage harder, not easier.</li></ul>
 <p>Crushed stone is a cheap, universally available product. <strong>You do not build a complicated three-dimensional mine on a summit to obtain something you can pick up anywhere.</strong> So, she argues, the layout was not designed for stone — and the irregular, wandering shape of the chambers is what mining <em>looks</em> like when you are following a deposit rather than removing bulk.</p>
@@ -149,13 +158,14 @@
 <ul><li>a large, good-grade <strong>silver</strong> deposit in a layer of breccia tuff, on Mount Xiqiao itself, not far from the cave</li><li>a high rate of <strong>rare earth</strong> content in the same area</li><li>about ten miles away, a large <strong>gold</strong> deposit and a larger high-grade silver deposit — already assessed, with mining begun</li><li>the ores formed by geothermal deposition and silicification, so the volcano itself made them</li></ul>
 <p>Her conclusion <a class="t" href="https://youtu.be/60ku_x0ccPI?t=782" target="_blank" rel="noopener">13:02–13:23</a>: possibly a prehistoric mine for precious metals, worked more than 12,000 years ago.</p>
 <hr>
-<h3>Where this is checkable</h3>
+<h2>See also</h2>
+<p><a href="../FCPhQWjCtus/">Ancient Chinese Quarry: Proof of Lost Advanced Technology?</a> — the same case argued about a different site. That one asks <em>where did the stone go</em> and answers with a submerged civilisation nobody has looked for; this one asks <em>why quarry here at all</em> and answers with ore deposits that have been assayed and are being mined.</p>
+<h2>What you can check yourself</h2>
 <ul><li><strong>The two water tables.</strong> Cave water above 100 m, regional water table under 3 m: two measurements, and the whole of Mystery 2 rests on them.</li><li><strong>Artesian springs on Mount Xiqiao</strong> are either there or not, and the mountain is a public park.</li><li><strong>The ore deposits</strong> are the most checkable claim in the video: assessed, published and being mined. Silver in breccia tuff on Xiqiao, gold ten miles off.</li><li><strong>The two qualities of work</strong> inside the cave are photographable, and the underwater preservation is exactly what makes that comparison possible.</li><li><strong>The absence of human remains and masonry tools</strong> is an excavation record, attributed to a named-but-unnamed local archaeologist.</li><li><strong>The layout</strong> — chambers at differing elevations, connecting passages — is in the laser and sonar 3D model already made.</li></ul>
-<h3>Open questions she leaves</h3>
+<h2>What the video does not settle</h2>
 <ul><li><strong>Guangdong was not glaciated.</strong> The frozen-aquifer scenario needs Mount Xiqiao "potentially covered with ice" at the Last Glacial Maximum. This is a 346 m hill at roughly 23° N, in the subtropics; ice at the Last Glacial Maximum in East Asia was confined to high mountains, and southern China is not among them — she says herself, in the Wushan video, that east China stayed ice-free. <strong>A reader should check this one before accepting the dating</strong>, because the glacial excavation window is what carries the argument from "old" to "prehistoric".</li><li><strong>The strong argument and the dating are independent.</strong> The layout argument — that this is the wrong shape and the wrong place for a stone quarry — works whoever dug it and whenever. It does not need the tool marks, the machinery or the ice. Bundling them together makes the whole easier to dismiss than its best part deserves.</li><li><strong>No assay from inside the cave.</strong> The ore deposits are <em>nearby</em>. Nothing is offered showing metal-bearing rock at Shiyan Cave itself, and a sample from the walls would test the mining hypothesis directly.</li><li><strong>The silt has not been examined.</strong> She notes a thick layer over the floor and that archaeologists suspect more beneath it. That is where the datable material would be.</li><li><strong>The ore deposits are never shown.</strong> They are the most checkable claim in the video, and the screen during that passage carries a Google Earth location shot, not a geological map or a survey. The same is true of the aquifer section, which is illustrated with stock photographs of springs — one of them still carrying its agency watermark — rather than a cross-section. The underwater footage is real and specific; the supporting material is not.</li><li><strong>Crushed stone as the product is imported</strong>, from the Wushan argument, with the same mark-to-product inference and the same gap in it.</li><li><strong>The lamp stands cut both ways.</strong> Oil lamp stands, bowls and bamboo ladders are exactly what a conventional lamp-lit quarry leaves behind. She accounts for them as the later Chinese phase, which is coherent — but it means the artefactual evidence in the cave all belongs to the phase she is <em>not</em> arguing about.</li></ul>
-<h3>Why this one matters for the site</h3>
-<p><strong>It is the best example so far of an argument that does not depend on the machining claim.</strong> Everything in Mystery 3 is about cost, effort and layout: you do not dig a multi-level cave on top of a hill to get gravel. That argument is available to a reader who rejects every word about ancient machinery, and it is a real question that the conventional "flooded quarry" label does not answer.</p>
-<p>It also pairs with the <a href="../FCPhQWjCtus/">Wushan quarry entry</a> as the same case argued twice, once well and once badly. Wushan asks <em>where did the stone go</em> and answers with a submerged civilisation nobody has looked for. Shiyan asks <em>why would you quarry here at all</em> and answers with silver and gold deposits that have been assayed and are being mined. Same presenter, same month or so apart, and one of the two arguments can actually be pursued.</p>
+<h2>What we have not checked</h2>
+<ul><li><strong>Shiyan Cave</strong> and <strong>Mount Xiqiao</strong> are the names as spoken; spellings not confirmed against a Chinese source.</li><li>The "local archaeologist" is not named in the video.</li><li>Transcript "Yanshan" corrected to <strong>Yangshan</strong>; "Baalbeck" to <strong>Baalbek</strong>.</li><li>The ore-deposit figures — good-grade silver in breccia tuff, gold ten miles away, mining begun — are reported as she gives them and have not been traced to a survey.</li></ul>
 </article>
 <p class="foot">
   A summary of someone else's video, written to record the argument and the evidence offered

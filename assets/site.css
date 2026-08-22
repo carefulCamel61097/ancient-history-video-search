@@ -25,26 +25,31 @@ a { color: var(--accent); }
 
 /* ---- top bar ------------------------------------------------------- */
 
+/* Its own surface rather than the page's, so it reads as chrome and not as
+   the first block of content. Sticky because entries are long and the way
+   back out should not need a scroll to the top. */
 .nav {
-  border-bottom: 1px solid var(--line); background: var(--bg);
+  border-bottom: 1px solid var(--line); background: var(--card);
+  position: sticky; top: 0; z-index: 30;
 }
 .nav .inner {
-  max-width: 820px; margin: 0 auto; padding: 10px 20px;
-  display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+  max-width: 820px; margin: 0 auto; padding: 13px 20px;
+  display: flex; align-items: center; gap: 5px; flex-wrap: wrap;
 }
 .nav .brand {
-  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.02em;
-  color: var(--fg); text-decoration: none; margin-right: 10px;
+  font-size: 0.93rem; font-weight: 700; letter-spacing: -0.01em;
+  color: var(--fg); text-decoration: none; margin-right: 14px;
 }
 .nav .brand span { color: var(--accent); }
 .nav a.tab {
-  font-size: 0.83rem; color: var(--muted); text-decoration: none;
-  padding: 5px 9px; border-radius: 7px; border: 1px solid transparent;
+  font-size: 0.88rem; color: var(--muted); text-decoration: none;
+  padding: 7px 11px; border-radius: 8px; border: 1px solid transparent;
   white-space: nowrap;
 }
 .nav a.tab:hover { color: var(--fg); background: var(--chip); }
 .nav a.tab[aria-current="page"] {
   color: var(--fg); background: var(--chip); border-color: var(--line);
+  font-weight: 600;
 }
 .nav a.tab.soon { opacity: 0.55; }
 .nav a.tab.soon::after {
@@ -83,4 +88,10 @@ h1 { font-size: 1.5rem; margin: 0 0 4px; letter-spacing: -0.01em; }
 .foot {
   font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--line);
   margin-top: 40px; padding-top: 14px;
+}
+
+@media (max-width: 560px) {
+  .nav .brand { font-size: 0.85rem; margin-right: 0; flex: 1 0 auto; }
+  .nav a.tab { font-size: 0.83rem; padding: 6px 9px; }
+  .nav .inner { padding: 11px 16px; gap: 4px; }
 }

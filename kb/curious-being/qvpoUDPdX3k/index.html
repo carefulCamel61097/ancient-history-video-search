@@ -36,6 +36,15 @@
   th { color: var(--muted); font-size: 0.76rem; text-transform: uppercase;
        letter-spacing: 0.05em; }
 
+  /* Way back out of an entry. The nav has one too, but after scrolling a
+     long summary the top of the article is where you look. */
+  a.back {
+    display: inline-block; margin-bottom: 16px; font-size: 0.83rem;
+    color: var(--muted); text-decoration: none;
+  }
+  a.back::before { content: "90"; margin-right: 7px; }
+  a.back:hover { color: var(--accent); }
+
   .head { border-bottom: 1px solid var(--line); padding-bottom: 16px; margin-bottom: 22px; }
   .chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
   .chips span, .chips a {
@@ -76,13 +85,14 @@
 <nav class="nav"><div class="inner">
   <a class="brand" href="../../../">Alternative Ancient History <span>Summarized</span></a>
   <a class="tab" href="../../../">Why</a>
-  <a class="tab" href="../../../search/">Search transcripts</a>
   <a class="tab" href="../../../kb/" aria-current="page">Knowledge base</a>
+  <a class="tab" href="../../../search/">Search transcripts</a>
   <a class="tab soon" href="../../../gallery/">Gallery</a>
   <button type="button" id="theme" aria-label="Switch theme" title="Switch theme"></button>
 </div></nav>
 
 <div class="wrap">
+<a class="back" href="../../">Knowledge base</a>
 <article>
 <div class="head">
   <p class="kicker">Curious Being</p>
@@ -94,11 +104,10 @@
   </p>
   <div class="chips"><span class="arg">mainstream</span><span class="arg">why</span><span class="arg">cross-continental</span><span class="arg">how</span><span class="arg">unfinished</span><span class="arg">convergence</span><span>knobs</span><span>polygonal-masonry</span><span>geopolymer</span><span>casting</span><span>lifting-bosses</span><span>cross-site-similarity</span></div>
 </div>
-<h2>Megalithic knobs are not one phenomenon</h2>
 <p><strong>The core move is methodological, and it is the most useful part of the video:</strong> the knobs found on megalithic stonework around the world are routinely discussed as a single mystery, and Tina argues they are at least four different things with four different causes. Lumping them together, she says, "muddies the water" — you cannot explain a category that isn't one.</p>
 <p>Three of the four types she considers ordinary construction. Only the third is the anomaly, and that is where her actual claim sits.</p>
 <hr>
-<h3>Type 1 — Lifting bosses <em>(ordinary)</em></h3>
+<h2>Type 1 — Lifting bosses <em>(ordinary)</em></h2>
 <p>Protrusions deliberately left on a block so it can be moved with ropes and levers, sometimes never trimmed off afterwards, sometimes kept as decoration.</p>
 <p><strong>Diagnostic features</strong> — and these matter, because they become the test for the other types:</p>
 <ul><li>centred on the block, or symmetrically paired</li><li>flat bottom, so a rope seats and the block hangs level</li><li>enough projection to actually tie or hook onto</li></ul>
@@ -108,7 +117,7 @@
        data-cap="The Propylaea, Athens. A regular grid of bosses — one per block, each centred, square and flat-bottomed. She says the facades carry more than 400 of them.">
   <figcaption><a class="t" href="https://youtu.be/qvpoUDPdX3k?t=171" target="_blank" rel="noopener">0:02:51</a> The Propylaea, Athens. A regular grid of bosses — one per block, each centred, square and flat-bottomed. She says the facades carry more than 400 of them.</figcaption>
 </figure><p class="claim-note">This is the accepted archaeological reading of knobs, and she accepts it for these. Once you have seen what a lifting boss looks like, the Peruvian knobs below need no argument.</p></div>
-<h3>Type 2 — Mortise-and-tenon joints <em>(ordinary)</em></h3>
+<h2>Type 2 — Mortise-and-tenon joints <em>(ordinary)</em></h2>
 <p>Large, regular, rectangular protrusions that lock into a matching recess in the next block — the tenon <em>is</em> the knob. Structural, not incidental.</p>
 <p><strong>Where</strong> <a class="t" href="https://youtu.be/qvpoUDPdX3k?t=401" target="_blank" rel="noopener">06:41–07:48</a> — Coricancha in Peru, the Osireion at Abydos, and a Chinese stone tomb she covered in an earlier video. Her test for telling these from lifting bosses is size: at Coricancha some are "unnecessarily oversized" for lifting, and unlike lifting bosses they have no reason to line up.</p>
 <div class="shot"><figure>
@@ -116,10 +125,15 @@
        data-cap="Ollantaytambo, the Wall of Six Monoliths. A broad horizontal band stands proud across the face of the stone.">
   <figcaption><a class="t" href="https://youtu.be/qvpoUDPdX3k?t=445" target="_blank" rel="noopener">0:07:25</a> Ollantaytambo, the Wall of Six Monoliths. A broad horizontal band stands proud across the face of the stone.</figcaption>
 </figure><p class="claim-note">Too large and too linear to be a lifting boss: her test against bosses is size, and unlike bosses these have no reason to line up.</p></div>
-<h3>Type 4 — Designed supports and unfinished decoration <em>(ordinary)</em></h3>
+<h2>Type 4 — Designed supports and unfinished decoration <em>(ordinary)</em></h2>
 <p>Prominent knobs whose placement implies a specific job <a class="t" href="https://youtu.be/qvpoUDPdX3k?t=1255" target="_blank" rel="noopener">20:55–22:00</a>: cylindrical ones ringing window openings at Machu Picchu, which she reads as supports for horizontal members; evenly spaced rows resembling <em>vigas</em>, exposed beam ends; and <strong>bossage</strong> — uncut stone deliberately left proud to be carved into mouldings later, which would make some Yangshan and Indian temple knobs simply unfinished work.</p>
+<div class="shot"><figure>
+  <img src="img/f_0221.jpg" alt="regularly placed knobs ringing a window opening" loading="lazy"
+       data-cap="The curved tower at Machu Picchu in fine regular coursing, built over living bedrock. Around the trapezoidal window, four blocky protrusions are set at regular intervals - two flanking it, one below, one above - each left proud of the wall face.">
+  <figcaption><a class="t" href="https://youtu.be/qvpoUDPdX3k?t=1272" target="_blank" rel="noopener">0:21:12</a> The curved tower at Machu Picchu in fine regular coursing, built over living bedrock. Around the trapezoidal window, four blocky protrusions are set at regular intervals - two flanking it, one below, one above - each left proud of the wall face.</figcaption>
+</figure><p class="claim-note">The counter-case, and the reason the four-way split matters: here the placement does imply a function, so these knobs need no anomaly to explain them.</p></div>
 <hr>
-<h3>Type 3 — The anomaly, and the actual argument</h3>
+<h2>Type 3 — The anomaly, and the actual argument</h2>
 <p><strong>The observation.</strong> A class of knobs that fails every test above <a class="t" href="https://youtu.be/qvpoUDPdX3k?t=597" target="_blank" rel="noopener">09:57–10:02</a>: irregular and random in shape, frequently off-centre, often too shallow to hold a rope, with sloped bottoms a rope would slide off. Concentrated at Cusco, Sacsayhuamán, Ollantaytambo — and also at the Osireion and the Menkaure pyramid in Egypt.</p>
 <div class="shot"><figure>
   <img src="img/f_0101.jpg" alt="a gateway in a wall of large irregular polygonal blocks" loading="lazy"
@@ -128,6 +142,16 @@
 </figure><p class="claim-note">Irregular, off-centre, too shallow to hold a rope, sloped bottoms a rope would slide off — the class that fails every diagnostic for a lifting boss.</p></div>
 <p><strong>The argument's structure is worth noting.</strong> She does not argue from the knobs alone. She points out that the sites carrying these knobs share a <em>cluster</em> of other features, and argues that any explanation of the knobs must explain the cluster too:</p>
 <div class="tablewrap"><table><thead><tr><th>feature</th><th>what she says</th></tr></thead><tbody><tr><td>dry-stacked, no mortar</td><td>joints so tight "a single piece of paper couldn't be inserted"</td></tr><tr><td>no quarry or tool marks</td><td>surfaces smooth where cutting marks should be</td></tr><tr><td>scraping marks</td><td>broad shallow strokes, sometimes running <em>across multiple blocks</em></td></tr><tr><td>stamp-like indents</td><td>pressed-in marks she calls "inverted knobs"</td></tr><tr><td>bulging, pillowy faces</td><td>consistent slight swelling, strongest at Sacsayhuamán and Cusco</td></tr><tr><td>sunken joints</td><td>seams subtly recessed, as if worked while soft</td></tr></tbody></table></div>
+<div class="shot"><figure>
+  <img src="img/f_0110.jpg" alt="a hand at a tight joint between pillowy, sunken-jointed blocks" loading="lazy"
+       data-cap="A hand held against a polygonal wall, one finger touching the joint between two blocks. Every face bulges gently outward and the seams are recessed below them, so the wall reads as a set of cushions rather than cut slabs. No gap is visible at the joint at all.">
+  <figcaption><a class="t" href="https://youtu.be/qvpoUDPdX3k?t=622" target="_blank" rel="noopener">0:10:22</a> A hand held against a polygonal wall, one finger touching the joint between two blocks. Every face bulges gently outward and the seams are recessed below them, so the wall reads as a set of cushions rather than cut slabs. No gap is visible at the joint at all.</figcaption>
+</figure><p class="claim-note">The consistent swelling that goes with the anomalous knobs: faces bulging softly, joints sunk between them, and a fit tight enough that she repeats the line about a sheet of paper.</p></div>
+<div class="shot"><figure>
+  <img src="img/f_0131.jpg" alt="a labelled Coricancha interior with an arrow at a seam" loading="lazy"
+       data-cap="An interior corner at Coricancha, labelled by the presenter, in regular coursed masonry with recessed niches. A red arrow points down at a horizontal seam low on the right-hand wall. The mark she is describing is not clearly legible at this size; the arrow marks where to look.">
+  <figcaption><a class="t" href="https://youtu.be/qvpoUDPdX3k?t=763" target="_blank" rel="noopener">0:12:43</a> An interior corner at Coricancha, labelled by the presenter, in regular coursed masonry with recessed niches. A red arrow points down at a horizontal seam low on the right-hand wall. The mark she is describing is not clearly legible at this size; the arrow marks where to look.<span class="note">site label and red arrow added by the presenter · faint URL watermark, bottom right</span></figcaption>
+</figure><p class="claim-note">A mark that runs across a joint onto the next block cannot have been made before the blocks were placed, which is hard to arrange if each was cut separately.</p></div>
 <p><strong>The strongest single piece of evidence</strong> <a class="t" href="https://youtu.be/qvpoUDPdX3k?t=669" target="_blank" rel="noopener">11:09–12:16</a> is the partially-finished block. At the Menkaure pyramid, and again at the Osireion, she points to blocks that are flat on one face and bulging on another — work stopped mid-process. She reads this as <em>screeding</em>, the modern concrete step where a straight edge is dragged across a pour to level it, caught half-done. On that reading these are abandoned projects, which is why the method is still legible at all.</p>
 <div class="shot"><div class="pair"><figure>
   <img src="img/f_0118.jpg" alt="flat and unflattened blocks in the same wall" loading="lazy"
@@ -148,6 +172,11 @@
 </figure></div><p class="claim-note">Blocks left flat on one face and bulging on another: work stopped mid-process, which she reads as screeding interrupted.</p></div>
 <p><strong>The claim.</strong> These sites were not carved from quarried stone but <strong>cast in place</strong> from a concrete or geopolymer that had a plastic state before curing. Blocks were poured or moulded, set while still firm-but-pliable, then compressed together — "like squeezing Play-Doh balls" — which produces the interlocking zigzag joins without any need to cut a bespoke fit.</p>
 <p><strong>How the knobs follow from it</strong> <a class="t" href="https://youtu.be/qvpoUDPdX3k?t=1120" target="_blank" rel="noopener">18:40–19:47</a>. Excess material sagged under gravity to the lower part of a block; a tool or suction device removed the surplus; the knobs are the leftovers of that removal. Her supporting observation is distributional: the knobs sit predominantly on the <strong>lower portions</strong> of blocks, which is where gravity would leave excess.</p>
+<div class="shot"><figure>
+  <img src="img/f_0199.jpg" alt="a row of rectangular sunken marks across a megalithic block face" loading="lazy"
+       data-cap="A Sacsayhuamán terrace under cloud. On the second great block from the left, a row of clean rectangular hollows is sunk into the face at head height, with more scattered on neighbouring blocks. Small rubble coursing sits on top of the megalithic work behind.">
+  <figcaption><a class="t" href="https://youtu.be/qvpoUDPdX3k?t=1153" target="_blank" rel="noopener">0:19:13</a> A Sacsayhuamán terrace under cloud. On the second great block from the left, a row of clean rectangular hollows is sunk into the face at head height, with more scattered on neighbouring blocks. Small rubble coursing sits on top of the megalithic work behind.</figcaption>
+</figure><p class="claim-note">Pressed-in rectangular marks she calls inverted knobs - on the casting reading, where a tool pushed a sagging block back up.</p></div>
 <p><strong>Slump explains the variation.</strong> Concrete consistency is governed by water content. A dry, near-zero-slump mix holds a crisp edge the moment the mould comes off, giving the sharp rectangular blocks at Coricancha. A wetter mix slumps and rounds, giving the pillowy look at Sacsayhuamán and Cusco. Same method, different recipe.</p>
 <div class="shot"><figure>
   <img src="img/f_0153.jpg" alt="a person standing against a wall of enormous rounded stone blocks" loading="lazy"
@@ -156,14 +185,12 @@
 </figure><p class="claim-note">A dry, near-zero-slump mix holds a crisp edge the moment the mould comes off; a wetter mix slumps and rounds. Same method, different recipe.</p></div>
 <p><strong>What she explicitly rejects</strong> <a class="t" href="https://youtu.be/qvpoUDPdX3k?t=736" target="_blank" rel="noopener">12:16–13:22</a>: the stone-softening idea — that quarried stone was chemically softened and re-hardened. She says she has not seen anyone demonstrate it is feasible, and that casting would be easier and more efficient than quarrying, transporting and cutting to fit.</p>
 <hr>
-<h3>Where this is checkable</h3>
+<h2>See also</h2>
+<p><a href="../x9S4CqY3eSA/">How Were Sacsayhuamán Polygonal Walls Built?</a> — the same hypothesis laid out in full, for the whole wall rather than one feature, and with the one piece of laboratory analysis she cites anywhere.</p>
+<h2>What you can check yourself</h2>
 <ul><li><strong>The partially-flattened blocks</strong> at Menkaure and the Osireion are the load-bearing evidence. They are photographable, and either the flat-and-bulging-on-one-block description holds or it does not.</li><li><strong>Scraping marks that cross block boundaries</strong> would be hard to explain on individually quarried blocks, since the mark would have to be applied after placement.</li><li><strong>Knob distribution</strong> — her claim that they cluster on lower block portions is a counting exercise anyone could do from photographs.</li><li><strong>The Propylaea count</strong> ("more than 400") is a stated figure that can be checked.</li></ul>
-<h3>Open questions she leaves</h3>
+<h2>What the video does not settle</h2>
 <ul><li>She does not claim <em>all</em> type-3 knobs came from the suction process, only that many could have; the mechanism is offered as plausible, not demonstrated.</li><li>No material analysis is presented here — the case is entirely morphological, from how the stone looks and behaves. Whether the material at these sites is geopolymer is exactly the contested question elsewhere, and this video does not settle it.</li><li>The four-type scheme is her own, and the assignment of any particular knob to a type is a judgement call.</li></ul>
-<h3>Why this one matters for the site</h3>
-<p><strong>Read it with the <a href="../x9S4CqY3eSA/">Sacsayhuamán entry</a></strong>, which is where she lays the casting hypothesis out in full and cites the one piece of laboratory analysis in the knowledge base. This video is the same argument narrowed to a single feature and tested against every ordinary explanation of it — which is the better half of the pair, because it is the half that concedes ground.</p>
-<p>It is a direct answer to the "walls that look the same on opposite sides of the world" question, and it answers it in an unexpected way: the similarity is real, but she argues it is a similarity of <em>method</em>, not of culture or contact. It is also a good model of argument — distinguish before explaining, and require a single cause to account for a whole cluster of features.</p>
-<p>Heavily image-dependent: nearly every claim here is a "look at this block" claim, which makes it a prime candidate for the gallery page.</p>
 </article>
 <p class="foot">
   A summary of someone else's video, written to record the argument and the evidence offered
