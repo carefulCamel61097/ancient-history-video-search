@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Back 2 BAM (sequel to BAM) — Summarized</title>
+<meta name="description" content="The sequel to BAM is an argument about method rather than about sites: why the team measured what it measured, why dating by inscription is weaker than it looks, and what a 44-million-point scan of one Indian cave turned up that the naked eye had missed.">
+<link rel="stylesheet" href="../../../assets/site.css">
+<style>
+  article { font-size: 1rem; }
+  article h1 { font-size: 1.55rem; margin: 0 0 14px; line-height: 1.25; }
+  article h2 { font-size: 1.12rem; margin: 34px 0 10px; }
+  article h3 { font-size: 0.98rem; margin: 22px 0 8px; }
+  article p { margin: 0 0 13px; }
+  article ul { margin: 0 0 14px; padding-left: 20px; }
+  article li { margin-bottom: 5px; }
+  article hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0; }
+  article blockquote {
+    margin: 0 0 14px; padding: 2px 0 2px 14px; border-left: 3px solid var(--accent);
+    color: var(--muted);
+  }
+  article code {
+    background: var(--chip); border-radius: 4px; padding: 1px 5px; font-size: 0.85em;
+  }
+  a.t {
+    font-variant-numeric: tabular-nums; font-size: 0.85em; background: var(--chip);
+    border: 1px solid var(--line); border-radius: 5px; padding: 0 5px;
+    color: var(--accent); text-decoration: none; white-space: nowrap; font-weight: 600;
+  }
+  a.t:hover { border-color: var(--accent); }
+
+  .tablewrap { overflow-x: auto; margin: 0 0 16px; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.87rem; }
+  th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line);
+           vertical-align: top; }
+  th { color: var(--muted); font-size: 0.76rem; text-transform: uppercase;
+       letter-spacing: 0.05em; }
+
+  /* Way back out of an entry. The nav has one too, but after scrolling a
+     long summary the top of the article is where you look. */
+  a.back {
+    display: inline-block; margin-bottom: 16px; font-size: 0.83rem;
+    color: var(--muted); text-decoration: none;
+  }
+  /* The literal character, not a CSS escape: this block is a plain Python
+     string, so a backslash-2190 in it reads as the octal escape  then "90". */
+  a.back::before { content: "←"; margin-right: 7px; }
+  a.back:hover { color: var(--accent); }
+
+  .head { border-bottom: 1px solid var(--line); padding-bottom: 16px; margin-bottom: 22px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+  .chips span, .chips a {
+    font-size: 0.73rem; background: var(--chip); border: 1px solid var(--line);
+    border-radius: 999px; padding: 3px 9px; color: var(--muted); text-decoration: none;
+  }
+  .chips .arg { color: var(--accent); border-color: var(--accent); }
+
+  .shot { margin: 20px 0 24px; }
+  figure { margin: 0 0 12px; }
+  figure img {
+    width: 100%; display: block; border-radius: 9px; border: 1px solid var(--line);
+    cursor: zoom-in; background: var(--card);
+  }
+  figcaption { font-size: 0.8rem; color: var(--muted); margin-top: 7px; line-height: 1.45; }
+  figcaption .note {
+    display: block; margin-top: 3px; font-size: 0.73rem; opacity: 0.8; font-style: italic;
+  }
+  .pair { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
+  .pair figure { margin: 0; }
+  @media (max-width: 560px) { .pair { grid-template-columns: 1fr; } }
+  .claim-note {
+    font-size: 0.86rem; color: var(--fg); border-left: 3px solid var(--accent);
+    padding-left: 12px; margin: 10px 0 0;
+  }
+
+  #lb {
+    display: none; position: fixed; inset: 0; z-index: 50; background: rgba(0,0,0,0.88);
+    align-items: center; justify-content: center; padding: 24px; cursor: zoom-out;
+  }
+  #lb.on { display: flex; }
+  #lb img { max-width: 100%; max-height: 84vh; border-radius: 8px; display: block; }
+  #lb .cap { color: #ddd; font-size: 0.82rem; margin-top: 10px; max-width: 760px; }
+</style>
+<script src="../../../assets/site.js"></script>
+</head>
+<body>
+<nav class="nav"><div class="inner">
+  <a class="brand" href="../../../">Alternative Ancient History <span>Summarized</span></a>
+  <a class="tab" href="../../../">Why</a>
+  <a class="tab" href="../../../kb/" aria-current="page">Knowledge base</a>
+  <a class="tab" href="../../../search/">Search transcripts</a>
+  <a class="tab soon" href="../../../gallery/">Gallery</a>
+  <button type="button" id="theme" aria-label="Switch theme" title="Switch theme"></button>
+</div></nav>
+
+<div class="wrap">
+<a class="back" href="../../">Knowledge base</a>
+<article>
+<div class="head">
+  <p class="kicker">BAM Investigations</p>
+  <h1>Back 2 BAM (sequel to BAM)</h1>
+  <p class="sub">
+    Patrice Pouillard &middot; 63 min &middot;
+    <a href="https://youtu.be/HmJerr3-PTE" target="_blank" rel="noopener">watch on YouTube</a>
+    &middot; summarised 2026-08-25
+  </p>
+  <div class="chips"><span class="arg">how</span><span class="arg">dating</span><span class="arg">mainstream</span><span class="arg">two-industries</span><span class="arg">convergence</span><span class="arg">why</span><span class="arg">out-of-sequence</span><span>surface-roughness</span><span>ancient-metrology</span><span>rock-cut-sites</span><span>dating-by-inscription</span><span>restoration-as-original</span><span>sacred-geometry</span><span>pyramid-function</span><span>loss-of-records</span></div>
+</div>
+<p>Where the first film travelled, this one explains itself. It is a short sequel — sixty-three minutes against a hundred and thirty-nine — and it is mostly about <strong>why the team measured anything at all</strong>, what the measuring changed, and where the case is weaker than it was made to look. It also carries one genuinely new result, which arrives in the last ten minutes.</p>
+<p>The team describes itself at the start <a class="t" href="https://youtu.be/HmJerr3-PTE?t=137" target="_blank" rel="noopener">2:17–3:20</a>: <em>"an independent research team whose members come from varied backgrounds — scientists, engineers, technicians, architects, stonemason and passionate researchers."</em> The stated approach is that a site's accepted context decides in advance what tools its builders can have had, and that this is circular:</p>
+<blockquote><em>"The use of machine tools in ancient Egypt is seen as absurd because everyone knows that Egyptians didn't have machine tools. To go further — how do we know that? Because history says so. Based on what?"</em></blockquote>
+<p>The counter it offers to its own position is stated plainly and is not dodged: <em>"all this does not prove anything… because the absence of proof is not the proof of absence."</em></p>
+<hr>
+<h2>The narrowest and most useful claim in either film</h2>
+<p>Half an hour in, the film says something that materially changes what it is arguing, and it is easy to miss <a class="t" href="https://youtu.be/HmJerr3-PTE?t=1960" target="_blank" rel="noopener">32:40–33:22</a>:</p>
+<blockquote><em>"Contrary to what some people say, we never oppose the idea that it is possible to cut hard rocks with a copper blade and abrasive. The question is not whether or not cutting hard rock is possible, but rather whether or not it's possible to cut <strong>all sides</strong> of a several-ton block with such precision."</em></blockquote>
+<p>That is a much smaller claim than "they could not have done this by hand", and a much harder one to dismiss. The hardness argument behind it is conventional: andesite at 6.5–7 on the Mohs scale, copper at 3, so copper cannot scratch it and must instead carry an abrasive. The film accepts all of that. What it disputes is the repeatability — the same dimensions turning up on block after block.</p>
+<div class="shot"><figure>
+  <img src="img/f_0432.jpg" alt="a copper tool and hard stone together on a workshop bench" loading="lazy"
+       data-cap="A workshop bench. A hand at the right holds a tapered copper rod, its worn end resting against the blade of a machinist&#x27;s square branded &quot;Fowler&quot;; a rounded grey granite cobble sits on the bench beside it. Behind stand two small red-and-black press or vice rigs on steel columns, with a marking gauge and a steel surface plate at the left and a wooden wall beyond.">
+  <figcaption><a class="t" href="https://youtu.be/HmJerr3-PTE?t=1891" target="_blank" rel="noopener">0:31:31</a> A workshop bench. A hand at the right holds a tapered copper rod, its worn end resting against the blade of a machinist's square branded "Fowler"; a rounded grey granite cobble sits on the bench beside it. Behind stand two small red-and-black press or vice rigs on steel columns, with a marking gauge and a steel surface plate at the left and a wooden wall beyond.<span class="note">no · Fowler, on the square</span></figcaption>
+</figure><p class="claim-note">What copper is being asked to cut.</p></div>
+<hr>
+<h2>Dating by inscription, and why the film distrusts it</h2>
+<p>The strongest argumentative section is about how these sites got their dates <a class="t" href="https://youtu.be/HmJerr3-PTE?t=660" target="_blank" rel="noopener">11:00–14:00</a>.</p>
+<p>At the <strong>Serapeum of Saqqara</strong>, the twenty-two granite boxes are dated to the 18th dynasty by hieroglyphs. The film's observation is that <strong>only one box carries them</strong>, and that the carving is poor:</p>
+<blockquote><em>"It's hard to conceive that the same people who crafted these tanks with such care could be satisfied with such flimsy engravings. However, these engravings have determined the dating and the function of these tanks."</em></blockquote>
+<p>That is the <code>two-industries</code> argument in its most literal form: two grades of work on one object, with the cruder grade fixing the date of the finer.</p>
+<div class="shot"><figure>
+  <img src="img/f_0220.jpg" alt="the carved face of the single inscribed box, in its niche" loading="lazy"
+       data-cap="A large dark granite box standing in a rough rock-cut niche, lit warmly from the floor. Its flat front face carries incised hieroglyphs: a horizontal band of signs across the top and, below, rectangular framed panels of text and figures, all cut shallow so that they read as scratched lines rather than relief. The heavy chamfered lid sits square on top in near silhouette. A person with a camera stands in the passage beyond, and the chamber walls around are unfinished and pitted.">
+  <figcaption><a class="t" href="https://youtu.be/HmJerr3-PTE?t=696" target="_blank" rel="noopener">0:11:36</a> A large dark granite box standing in a rough rock-cut niche, lit warmly from the floor. Its flat front face carries incised hieroglyphs: a horizontal band of signs across the top and, below, rectangular framed panels of text and figures, all cut shallow so that they read as scratched lines rather than relief. The heavy chamfered lid sits square on top in near silhouette. A person with a camera stands in the passage beyond, and the chamber walls around are unfinished and pitted.<span class="note">no</span></figcaption>
+</figure><p class="claim-note">The one box that carries hieroglyphs, and the standard of the carving on it.</p></div>
+<p>At <strong>Barabar</strong>, the same move is made about the Ashoka inscriptions, and here the film adds a check that is genuinely its own <a class="t" href="https://youtu.be/HmJerr3-PTE?t=794" target="_blank" rel="noopener">13:14–13:35</a>. One of the caves carries <strong>further inscriptions from the fifth or sixth century CE</strong> — a thousand years after Ashoka, on the same walls. The inference offered is not that the caves are older, but that the method is unsafe:</p>
+<blockquote><em>"…which shows that throughout time people have had no hesitation about writing on the walls, which is probably the case with the first inscription."</em></blockquote>
+<p>An inscription dates the inscription. Whether it dates the chamber is a separate question, and the film is arguing that the two have been run together.</p>
+<p>The footage makes the point more plainly than the narration does. The cave mouths filmed here are covered in <strong>modern painted graffiti</strong> — names in Devanagari and in Latin letters, sprayed across polished granite beside the ancient cuts. People have written on these walls in every period, including this one.</p>
+<div class="shot"><div class="pair"><figure>
+  <img src="img/f_0237.jpg" alt="modern graffiti painted across a Barabar cave mouth" loading="lazy"
+       data-cap="A cave entrance cut into a smooth grey granite dome streaked with dark weathering. The doorway is a plain rectangle with sharp square edges and a small white plaque fixed above it. Across the rock on both sides are modern graffiti in white paint - &quot;P K GIRI&quot;, &quot;N.K BABA&quot;, and several names in Devanagari - together with older reddish marks at the right. Loose stones and grass lie at the foot of the rock.">
+  <figcaption><a class="t" href="https://youtu.be/HmJerr3-PTE?t=754" target="_blank" rel="noopener">0:12:34</a> A cave entrance cut into a smooth grey granite dome streaked with dark weathering. The doorway is a plain rectangle with sharp square edges and a small white plaque fixed above it. Across the rock on both sides are modern graffiti in white paint - "P K GIRI", "N.K BABA", and several names in Devanagari - together with older reddish marks at the right. Loose stones and grass lie at the foot of the rock.<span class="note">no</span></figcaption>
+</figure><figure>
+  <img src="img/f_0249.jpg" alt="one of the cut inscriptions at close range" loading="lazy"
+       data-cap="An extreme close-up, very shallow focus, of characters cut into weathered rock. One squared, box-like letter form is sharp in the centre of the frame, standing in a pale smooth panel; around it the surface is dark and crusted, and further letters dissolve into blur at both edges.">
+  <figcaption><a class="t" href="https://youtu.be/HmJerr3-PTE?t=802" target="_blank" rel="noopener">0:13:22</a> An extreme close-up, very shallow focus, of characters cut into weathered rock. One squared, box-like letter form is sharp in the centre of the frame, standing in a pale smooth panel; around it the surface is dark and crusted, and further letters dissolve into blur at both edges.<span class="note">no</span></figcaption>
+</figure></div><p class="claim-note">People have written on these walls in every period, which is the film's objection to dating the chambers by an inscription.</p></div>
+<p>Curious Being reads the same caves and reaches the opposite conclusion about how they were cut, in <a href="../../curious-being/OMWPyuxpm0I/">her Barabar investigation</a> — and the connection is closer than two parties visiting the same site. The survey footage she works from carries a <em>"RETOUR SUR BAM"</em> logo, which is this film's French title. <strong>She is reading this team's own laser scans and arguing against the conclusion they draw from them.</strong></p>
+<hr>
+<h2>Why the records are missing</h2>
+<p>The film's answer to <em>if there was something to record, where is the record</em> is historical rather than archaeological <a class="t" href="https://youtu.be/HmJerr3-PTE?t=893" target="_blank" rel="noopener">14:53–16:24</a>. It lists destructions of libraries in sequence: Egyptian temples and writings burned by the Persians in 527 BCE and Greek writings in 490; twelve thousand volumes of the Magi at Persepolis under Alexander in 330 BCE; Qin Shi Huang's book burning in 214 BCE; five hundred thousand Phoenician parchments at Carthage in 146 BCE; the books of the Druid college on Caesar's order in 52 BCE; Pergamon around 250 CE; Alexandria in 270 CE and again under Theophilus in 391, with some forty-two thousand books said to remain by then. The figures are attributed to the authors Selbie and Steinmetz.</p>
+<p>The Antikythera mechanism is used as the worked example, as in the first film — an object whose existence was not merely lost but whose <em>description in Greek texts had been reclassified as fiction</em> until the object turned up.</p>
+<p>This is the film's reply to the objection Curious Being puts most sharply in <a href="../../curious-being/0KBfaLJykF4/">If It Existed, Where Are the Machines?</a>. The two accounts do not meet: she argues the missing evidence is not documents but wear debris, production waste and worn tooling, which a library fire does not explain.</p>
+<hr>
+<h2>What the instruments changed, told as a conversion</h2>
+<p>The Puma Punku material is retold from the first film, but from a different angle: as an account of <strong>Érik Gonthier changing his mind after measuring</strong> <a class="t" href="https://youtu.be/HmJerr3-PTE?t=1259" target="_blank" rel="noopener">20:59–30:00</a>.</p>
+<p>The sequence given is that Gonthier's first reading of the surfaces was the ordinary one — the classic scraping technique, copper and abrasive, an enormous amount of work — and that he asked the team to bring a roughness tester ("roughometer", in the film's word) to quantify what they were describing. The film is explicit that the instrument came at his request, not theirs.</p>
+<blockquote><em>"Absorbed by his measurements, he doesn't immediately realize the implications."</em></blockquote>
+<p>What the narration says moved him was not the flatness of the outer faces but three things together: the internal faces being as smooth as the external ones, the angles being precise, and the <strong>same dimensions repeating from block to block</strong>. The film states the order of events deliberately: <em>"These details are so important that once known, they are precisely what makes Éric change his mind, and not the other way around."</em></p>
+<div class="shot"><figure>
+  <img src="img/f_0371.jpg" alt="the roughness tester in use at the moment the film calls the tipping point" loading="lazy"
+       data-cap="Two hands holding a small instrument close to the camera against a pale, gritty stone surface in daylight. The maker&#x27;s name &quot;Mitutoyo&quot; is legible along the top of the casing and the buttons below the screen read &quot;START/STOP&quot; and &quot;PAGE&quot;. The grey LCD is switched on but its contents are washed out and unreadable at this angle. Yellow lichen speckles the stone at the lower left.">
+  <figcaption><a class="t" href="https://youtu.be/HmJerr3-PTE?t=1500" target="_blank" rel="noopener">0:25:00</a> Two hands holding a small instrument close to the camera against a pale, gritty stone surface in daylight. The maker's name "Mitutoyo" is legible along the top of the casing and the buttons below the screen read "START/STOP" and "PAGE". The grey LCD is switched on but its contents are washed out and unreadable at this angle. Yellow lichen speckles the stone at the lower left.<span class="note">no · Mitutoyo</span></figcaption>
+</figure><p class="claim-note">The measurement the film treats as its turning point.</p></div>
+<p>The H-blocks are measured with a laser rangefinder, and the metric result is credited to its nineteenth-century source: <em>"Two German archeologists noted the same fact back in 1892."</em></p>
+<p>The metre argument is then restated as six "coincidences" <a class="t" href="https://youtu.be/HmJerr3-PTE?t=2846" target="_blank" rel="noopener">47:26–53:40</a> — the French royal span at 20 cm and five spans to the metre; the medieval cubit at 0.5236 m, a sixth of Pi; the same value as the Great Pyramid's royal cubit; the Puma Punku H-blocks; the Rapa Nui–Giza distance; and Sudama's six-metre dome with a three-metre radius centred a metre above the floor. It also names two precursors for the idea that the pyramid encodes the size of the Earth: <strong>Isaac Newton</strong>, and the mathematician <strong>Alexis Jean-Pierre Paucton</strong> in a 1781 book dedicated to the King of France.</p>
+<p>The film puts the standard objection in its own mouth before answering it: <em>"if you work on the numbers you will always find whatever you want."</em> The answer offered is that the coincidences accumulate, not that any one of them is decisive. The fuller version of this argument, with the Stübel and Uhle drawings behind it, is in <a href="../1QX5cHUsNSY/">the first film</a>.</p>
+<hr>
+<h2>Is the Great Pyramid a tomb?</h2>
+<p>A third of the film is spent on this, and it is mostly a survey of what the accepted account rests on <a class="t" href="https://youtu.be/HmJerr3-PTE?t=2266" target="_blank" rel="noopener">37:46–47:26</a>.</p>
+<p>The points made:</p>
+<ul><li><strong>No body has been found</strong> in the Great Pyramid or in any pyramid of the first dynasties. The film gives both standard explanations — looting, or symbolic monuments — without choosing.</li><li><strong>Pliny the Elder</strong> reports twelve authors who disagreed about the function of the pyramids. None of the twelve survives. What survives is <strong>Herodotus</strong>, writing two thousand years after the fact, and the film notes Egyptology is itself moving away from him.</li><li><strong>Khufu's name</strong> appears in red ink on blocks in the relieving chambers above the King's Chamber. The film reports the authenticity controversy, and that a German team from Dresden sampled the ink in 2013 <strong>without permission</strong>, which is why the results were rejected. It does not claim the results were right.</li><li>The <strong>Merer papyrus</strong>, found by Pierre Tallet's team in 2013, is a foreman's logbook recording transport of Tura limestone — the outer casing stone, not the core.</li><li>Wood fragments recovered by <strong>Piazzi Smyth</strong> were dated to 3341 and 3094 BCE, more than five centuries before the accepted date.</li></ul>
+<div class="shot"><figure>
+  <img src="img/f_0511.jpg" alt="the chamber above the King&#x27;s Chamber where the painted inscriptions are" loading="lazy"
+       data-cap="A low, cramped space roofed by two great pale limestone slabs meeting at an angle, photographed from below in flat light. The stone is coarse and honey-coloured, scored with tool marks running diagonally across both faces, and darker smudges and faint linear marks show here and there on the surfaces. A squared block edge runs across the bottom of the frame. No writing is legible.">
+  <figcaption><a class="t" href="https://youtu.be/HmJerr3-PTE?t=2408" target="_blank" rel="noopener">0:40:08</a> A low, cramped space roofed by two great pale limestone slabs meeting at an angle, photographed from below in flat light. The stone is coarse and honey-coloured, scored with tool marks running diagonally across both faces, and darker smudges and faint linear marks show here and there on the surfaces. A squared block edge runs across the bottom of the frame. No writing is legible.<span class="note">no</span></figcaption>
+</figure><p class="claim-note">The inscription the tomb attribution rests on.</p></div>
+<p>The radiocarbon problem is the subject of <a href="../../curious-being/UgLuLd_4B18/">Great Pyramids' Radiocarbon Dating</a>, which works through the same kind of anomalously early results and reaches a different reading of them.</p>
+<p>Two structural arguments follow. First, the sequence: Djoser's step pyramid, then Meidum, the Bent and the Red, then the three at Giza, then small brick pyramids that mostly collapsed — <em>"the older constructions are the biggest and the most durable."</em> Second, the arithmetic on <strong>Sneferu</strong>, who is now credited with all three of Meidum, the Bent and the Red: roughly 3.5 million tons of block across a twenty-five-year reign, which the film puts at <strong>390 blocks a day, every day</strong>. And the question it hangs on that — if pyramids are tombs, why does one king need three?</p>
+<p>Against Khufu as a monument-builder it sets the surviving portraiture: a single ivory statuette seven centimetres high.</p>
+<p>The <strong>octagonal indentation</strong> is quantified here in a way the first film did not do: the concavity amounts to about <strong>90 cm at the base</strong> across 115 m each way, which the film computes as under half a degree of deviation per face, maintained upward through 203 courses of varying height, alongside an orientation error given as 0.05°. It notes three of the pyramids show it — Red, Great and small — and the median one does not.</p>
+<div class="shot"><div class="pair"><figure>
+  <img src="img/f_0561.jpg" alt="the indentation of one face, visible as a line down its centre" loading="lazy"
+       data-cap="A drone view looking straight down one face of the Great Pyramid from above the apex. The face fills the centre of the frame as a long triangle of stepped masonry, and it is divided down the middle from apex to base by a clear change of tone - the left half in shadow, the right half in sun - so that the single face reads as two planes meeting along a central line. Tarmac roads, tomb fields and modern buildings surround the base.">
+  <figcaption><a class="t" href="https://youtu.be/HmJerr3-PTE?t=2671" target="_blank" rel="noopener">0:44:31</a> A drone view looking straight down one face of the Great Pyramid from above the apex. The face fills the centre of the frame as a long triangle of stepped masonry, and it is divided down the middle from apex to base by a clear change of tone - the left half in shadow, the right half in sun - so that the single face reads as two planes meeting along a central line. Tarmac roads, tomb fields and modern buildings surround the base.<span class="note">no</span></figcaption>
+</figure><figure>
+  <img src="img/f_0569.jpg" alt="the figure the film gives for the depth of the indentation at the base" loading="lazy"
+       data-cap="A motion graphic on black. A stylised pyramid face is drawn as a pale translucent triangle with glowing orange edge lines below it, and a bright blue dimension bracket runs along the top of the face and down its right side. Large white text above reads &quot;90 cm&quot;.">
+  <figcaption><a class="t" href="https://youtu.be/HmJerr3-PTE?t=2705" target="_blank" rel="noopener">0:45:05</a> A motion graphic on black. A stylised pyramid face is drawn as a pale translucent triangle with glowing orange edge lines below it, and a bright blue dimension bracket runs along the top of the face and down its right side. Large white text above reads "90 cm".<span class="note">the whole image is the film&#x27;s own graphic</span></figcaption>
+</figure></div><p class="claim-note">The concavity of the faces, and the figure put on it.</p></div>
+<p>Related from the other side: <a href="../../curious-being/nPswBtmQKD8/">Do the Great Pyramid's Math and Star Alignments Really Work?</a> and <a href="../../curious-being/ztkWo8g49S8/">Not a Power Plant</a>.</p>
+<hr>
+<h2>The new result: the Gopika scan</h2>
+<p>The last ten minutes carry what the film exists to add <a class="t" href="https://youtu.be/HmJerr3-PTE?t=3236" target="_blank" rel="noopener">53:56–58:46</a>.</p>
+<p>The 3D scans shown at the end of the first film had not been analysed when that film was cut. In <strong>late February 2020</strong> the team filmed a debriefing of the analysis by an engineer from a company the narration calls only <strong>AGP</strong>, and went back to Barabar in <strong>March 2020</strong> to check what the analysis said they had missed.</p>
+<p>The narration never expands the initials, but a survey sheet shown on screen does: <strong>Art Graphique et Patrimoine</strong>, a heritage laser-survey firm at Joinville-le-Pont, with its logo, postal address, telephone and website printed in the title block. The sheet is headed <em>"INDE — Caves de Barabar — Plan à ras du sol sur la grotte n°1 sur SITE 1 — Relevé lasergrammétrique"</em>. That turns the survey from an anonymous claim into a checkable one.</p>
+<p>The subject is the <strong>Gopika cave</strong> at Nagarjuni, reconstructed from <strong>44 million</strong> scanned points. Three findings:</p>
+<ul><li>the side walls lean inward at <strong>under 3°</strong>, as already reported — but the angle is not constant: it changes by <strong>three tenths of a degree over 8.1 m</strong></li><li>the walls are not flat. They are <strong>slightly curved, to a depth of 7.5 cm</strong> — <em>"this cave is actually only composed of curves"</em> — which the film says appears in no archaeological description and could not be seen by eye. This one is not merely narrated: the screen shows the section with a straight reference line laid across it and the departure dimensioned <strong>0.0750</strong> in metres</li><li>the scan was cut lengthwise and each half mirrored onto the other. The result given is that <strong>62% of the 44 million points fall almost in the same place</strong>. What is shown for this is a colour deviation map of the whole volume about its mirror plane — mostly green, with red and blue blooms at the ends and along one flank — <strong>and no colour scale anywhere in frame</strong></li></ul>
+<div class="shot"><div class="pair"><figure>
+  <img src="img/f_0695.jpg" alt="a titled laser-survey sheet, naming the company that produced it" loading="lazy"
+       data-cap="A survey drawing sheet on black. The upper half shows a grey laser-scan elevation of a rounded, capsule-shaped chamber with a short neck below it; the lower half is a scan of the pitted rock ground surface, with a dark circular opening at the left. A yellow scale bar sits at the right. A printed title block runs across the bottom: &quot;INDE — Caves de Barabar - Plan à ras du sol sur la grotte n°1 sur SITE 1 — Relevé lasergrammétrique&quot;, above the logo and full address of **Art Graphique et Patrimoine**, Joinville-le-Pont, with telephone, e-mail and www.artgp.fr.">
+  <figcaption><a class="t" href="https://youtu.be/HmJerr3-PTE?t=3393" target="_blank" rel="noopener">0:56:33</a> A survey drawing sheet on black. The upper half shows a grey laser-scan elevation of a rounded, capsule-shaped chamber with a short neck below it; the lower half is a scan of the pitted rock ground surface, with a dark circular opening at the left. A yellow scale bar sits at the right. A printed title block runs across the bottom: "INDE — Caves de Barabar - Plan à ras du sol sur la grotte n°1 sur SITE 1 — Relevé lasergrammétrique", above the logo and full address of <strong>Art Graphique et Patrimoine</strong>, Joinville-le-Pont, with telephone, e-mail and www.artgp.fr.<span class="note">no · Art Graphique et Patrimoine — logo, address, phone and website</span></figcaption>
+</figure><figure>
+  <img src="img/f_0700.jpg" alt="the dimensioned plan of the chamber, drawn from the scan" loading="lazy"
+       data-cap="A scan-derived plan on black. A rounded capsule outline encloses a pale grey surface marked with four dark circular patches, overlaid with fine yellow dimension lines, centre lines and small annotation figures; a short rectangular neck projects downward from it to meet a grey band of scanned rock below. A yellow graduated scale bar labelled in metres sits at the right.">
+  <figcaption><a class="t" href="https://youtu.be/HmJerr3-PTE?t=3419" target="_blank" rel="noopener">0:56:59</a> A scan-derived plan on black. A rounded capsule outline encloses a pale grey surface marked with four dark circular patches, overlaid with fine yellow dimension lines, centre lines and small annotation figures; a short rectangular neck projects downward from it to meet a grey band of scanned rock below. A yellow graduated scale bar labelled in metres sits at the right.<span class="note">no</span></figcaption>
+</figure></div><p class="claim-note">Who did the survey, and what it produced.</p></div>
+<div class="shot"><figure>
+  <img src="img/f_0702.jpg" alt="the departure of the wall from a straight reference line, dimensioned at 0.075 m" loading="lazy"
+       data-cap="A scan section on black: a broad grey wall surface rendered as dense point data, with a straight yellow reference line laid across its top edge. Fine yellow dimension arrows drop from that line to the surface, labelled &quot;0.0750&quot; in yellow text. A thick red circle has been drawn on the image around the dimension. Faint vertical yellow construction lines run down the frame and a small dark oval marks a feature on the wall at the right.">
+  <figcaption><a class="t" href="https://youtu.be/HmJerr3-PTE?t=3438" target="_blank" rel="noopener">0:57:18</a> A scan section on black: a broad grey wall surface rendered as dense point data, with a straight yellow reference line laid across its top edge. Fine yellow dimension arrows drop from that line to the surface, labelled "0.0750" in yellow text. A thick red circle has been drawn on the image around the dimension. Faint vertical yellow construction lines run down the frame and a small dark oval marks a feature on the wall at the right.<span class="note">the red circle is the film&#x27;s; the yellow dimensions are the survey&#x27;s</span></figcaption>
+</figure><p class="claim-note">The wall curvature, shown as a dimensioned measurement.</p></div>
+<div class="shot"><div class="pair"><figure>
+  <img src="img/f_0704.jpg" alt="the symmetry analysis rendered as a colour deviation map about a mirror plane" loading="lazy"
+       data-cap="A three-dimensional model of the chamber on black, shown as a rounded capsule volume cut through by a translucent dark blue plane running its whole length. The surface is coloured as a deviation map: most of it green, with scattered patches of pale cyan and yellow and a number of strong red and dark blue blooms, concentrated at the ends and along one flank. A small grey untextured version of the same volume floats at the upper left. **No colour scale or legend appears anywhere in the frame.**">
+  <figcaption><a class="t" href="https://youtu.be/HmJerr3-PTE?t=3453" target="_blank" rel="noopener">0:57:33</a> A three-dimensional model of the chamber on black, shown as a rounded capsule volume cut through by a translucent dark blue plane running its whole length. The surface is coloured as a deviation map: most of it green, with scattered patches of pale cyan and yellow and a number of strong red and dark blue blooms, concentrated at the ends and along one flank. A small grey untextured version of the same volume floats at the upper left. <strong>No colour scale or legend appears anywhere in the frame.</strong><span class="note">no</span></figcaption>
+</figure><figure>
+  <img src="img/f_0705.jpg" alt="the film&#x27;s specialist stating his conclusion about the curvature, on camera" loading="lazy"
+       data-cap="Érik Gonthier in a seated interview, hands clasped in front of him, speaking to camera in a room with green-painted display cases and shelved specimens behind him. A burnt-in subtitle reads &quot;It is so precise that you have to conclude that this curvature&quot;, and his credit caption below gives &quot;ÉRIK GONTHIER - PRE-HISTORIAN, GEOLOGIST AT THE MUSEE DE L&#x27;HOMME, ETHNO MINERALOGIST AND SEMIOLOGIST&quot;.">
+  <figcaption><a class="t" href="https://youtu.be/HmJerr3-PTE?t=3474" target="_blank" rel="noopener">0:57:54</a> Érik Gonthier in a seated interview, hands clasped in front of him, speaking to camera in a room with green-painted display cases and shelved specimens behind him. A burnt-in subtitle reads "It is so precise that you have to conclude that this curvature", and his credit caption below gives "ÉRIK GONTHIER - PRE-HISTORIAN, GEOLOGIST AT THE MUSEE DE L'HOMME, ETHNO MINERALOGIST AND SEMIOLOGIST".<span class="note">the subtitle and name caption are the film&#x27;s</span></figcaption>
+</figure></div><p class="claim-note">The mirrored-halves comparison, and the legend it is shown without.</p></div>
+<p>Gonthier states the conclusion himself, in a seated interview rather than on site, under a burnt-in subtitle: <em>"It is so precise that you have to conclude that this curvature…"</em> What he is shown concluding is that the curvature is <strong>deliberate</strong> — not that anything follows about who cut it. The film's own gloss is about specification rather than tools: <em>"This degree of precision was part of the technical specifications decided upon before even starting the work."</em> And the rhetorical question it ends on — <em>"are symmetrically-polished mirror-like walls necessary to shelter from monsoons?"</em> — is aimed at the accepted account of the caves as rain shelters granted to an ascetic sect.</p>
+<p>The film closes by naming what it is working on next: the <strong>energy</strong> such work would require, and <strong>sound frequencies</strong> at Barabar, with the data compiled and not yet quantified.</p>
+<hr>
+<h2>What you can check yourself</h2>
+<ul><li><strong>The Serapeum boxes.</strong> Whether only one of the twenty-two carries external hieroglyphs, and what the carving looks like beside the box it is cut into, is a matter of photographs.</li><li><strong>The later inscriptions at Barabar.</strong> The film's claim that one cave carries fifth- or sixth-century inscriptions alongside the Ashokan ones is checkable against the epigraphic record, and it is the load-bearing part of the dating argument.</li><li><strong>Mohs hardness.</strong> Andesite at 6.5–7 and copper at 3 are standard published values.</li><li><strong>The Merer papyrus.</strong> Published by Pierre Tallet; what it records and what it does not is a matter of reading it.</li><li><strong>The Dresden ink sampling of 2013</strong> and the reason it was rejected — the film's own account is that the sampling was unauthorised.</li><li><strong>Piazzi Smyth's wood fragments</strong> and their dates.</li><li><strong>Sneferu's three pyramids.</strong> The tonnage and the reign length are both published figures; the 390-blocks-a-day arithmetic can be redone.</li><li><strong>The concavity of the faces</strong>, visible in aerial and satellite imagery, and which pyramids show it.</li><li><strong>Stübel and Uhle 1892</strong>, again, for the H-block dimensions.</li></ul>
+<hr>
+<h2>What the video does not settle</h2>
+<p><strong>The 62% figure is shown without its scale.</strong> This is the sharpest gap in the film, and frame by frame it is a narrow one. The curvature <em>is</em> shown as a dimensioned measurement, and the survey company <em>is</em> identified in a title block. But the symmetry result is presented as a colour deviation map with <strong>no legend</strong> — and a deviation map without its scale says nothing, because the whole question is what counts as "almost at the same place". A loose enough threshold would make almost any cut chamber 62% symmetrical; a tight one would make the result remarkable. The number that decides which never appears. No engineer is named and no written report is shown.</p>
+<p><strong>Nor is there a comparison case.</strong> No second rock-cut chamber — Indian or otherwise, of any date — is scanned and put through the same mirror test. Even with a stated tolerance, one measurement of one cave has nothing to be remarkable against.</p>
+<p><strong>"Curved" is doing two jobs.</strong> A 7.5 cm departure from flat over walls more than eight metres long could be deliberate curvature or the residue of the cutting process. The film asserts the former by treating it as a specification; nothing in what is shown distinguishes them.</p>
+<p><strong>The dating argument is negative throughout.</strong> Showing that inscriptions are a weak basis for dating a chamber does not date the chamber. The film offers no alternative date for Barabar or for the Serapeum boxes, and does not claim to.</p>
+<p><strong>The libraries argument proves less than it is asked to.</strong> That records were destroyed is well attested. It explains missing texts. It does not explain missing tools, missing workshops, missing production debris or missing wear, which is what the objection it answers is actually about.</p>
+<p><strong>Several claims in the Egyptian section have no image behind them.</strong> The seven-centimetre statuette of Khufu is described and not shown. The Merer papyrus is named and not shown — what appears instead is a locator map of the Tura quarry. The red inscriptions above the King's Chamber are filmed, but nothing is legible, and the film says why: <em>"we have not yet been able to see them from close up."</em> The 90 cm concavity figure is presented as a motion graphic with no source given.</p>
+<p><strong>The pyramid-function section surveys rather than tests.</strong> Every point in it — no body, Pliny's twelve authors, Herodotus's distance from events, the ink controversy — is an argument that the accepted reading is under-evidenced. None is evidence for a different function, and the film proposes none.</p>
+<p><strong>The conversion narrative is the film's own framing.</strong> Gonthier is shown giving conventional explanations early and being troubled later, in that order, which is an editorial choice as much as a record. He does state one conclusion on camera — that the Gopika curvature is deliberate. He is not shown endorsing anything beyond that, and in the first film he says on the record that the Puma Punku surfaces are hand-made.</p>
+<p><strong>Newton and Paucton are cited without their texts.</strong> Neither is quoted and neither work is shown.</p>
+<p><strong>Selbie and Steinmetz</strong> are named as the source for the library figures; the work is not identified beyond the surname pair.</p>
+<hr>
+<h2>See also</h2>
+<ul><li><a href="../1QX5cHUsNSY/">BAM, Builders of the Ancient Mysteries</a> — the film this one explains, with the Puma Punku and Barabar fieldwork in full</li><li><a href="../../curious-being/OMWPyuxpm0I/">I Spent Months Investigating the Barabar Caves</a> — the same caves, the opposite conclusion</li><li><a href="../../curious-being/0KBfaLJykF4/">If It Existed, Where Are the Machines?</a> — the objection the libraries argument answers</li><li><a href="../../curious-being/UgLuLd_4B18/">Great Pyramids' Radiocarbon Dating</a> · <a href="../../curious-being/gFBC8DJ5mZ0/">Questioning the Luminescence Dating Result</a></li><li><a href="../../curious-being/nPswBtmQKD8/">Do the Great Pyramid's Math and Star Alignments Really Work?</a> · <a href="../../curious-being/ztkWo8g49S8/">Not a Power Plant</a> · <a href="../../curious-being/Sj7nb8KqOQY/">The Pyramid Theory That Solves Every Construction Mystery</a></li><li><a href="../../curious-being/n1tZD0iY5LI/">What They are Not Telling You About Precise Egyptian Stone Vases?</a> — the retraction, on precision claims of the same kind</li></ul>
+<hr>
+<h2>What we have not checked</h2>
+<ul><li>The Art Graphique et Patrimoine survey itself. The company is now identified from its own title block, but no report, engineer or tolerance has been located, and the 62% figure cannot be assessed without the last of those. <strong>Their published work on Barabar has not been looked for.</strong></li><li>Selbie and Steinmetz, and the individual library-destruction figures.</li><li>Whether only one Serapeum box carries external hieroglyphs.</li><li>The epigraphic record for the later Barabar inscriptions.</li><li>Paucton 1781 and the Newton attribution.</li><li>Whether <strong>Patrice Pouillard</strong> is credited on screen; unconfirmed from the first film's frames.</li></ul>
+</article>
+<p class="foot">
+  A summary of someone else's video, written to record the argument and the evidence offered
+  for it, not to endorse it. The images are stills from the video and belong to the channel;
+  each links back to the moment it was taken. Watch the original before relying on any wording.
+</p>
+
+</div>
+
+<div id="lb"><div><img id="lbimg" alt=""><div class="cap" id="lbcap"></div></div></div>
+<script>
+  var lb = document.getElementById("lb");
+  document.querySelectorAll("figure img").forEach(function (img) {
+    img.addEventListener("click", function () {
+      document.getElementById("lbimg").src = img.src;
+      document.getElementById("lbcap").textContent = img.dataset.cap || "";
+      lb.classList.add("on");
+    });
+  });
+  lb.addEventListener("click", function () { lb.classList.remove("on"); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") lb.classList.remove("on");
+  });
+</script>
+
+</body>
+</html>
