@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Architecture of Machu Picchu - Part 2 — Summarized</title>
+<meta name="description" content="The architecture half of the Machu Picchu investigation, and the one that takes on the evidence usually cited against it: four 16th-century Spanish eyewitness accounts of Inca stonework, which Ben argues describe repair rather than construction. It ends on the Intihuatana stone and a claim about its angle that can be checked twice a year.">
+<link rel="stylesheet" href="../../../assets/site.css">
+<style>
+  article { font-size: 1rem; }
+  article h1 { font-size: 1.55rem; margin: 0 0 14px; line-height: 1.25; }
+  article h2 { font-size: 1.12rem; margin: 34px 0 10px; }
+  article h3 { font-size: 0.98rem; margin: 22px 0 8px; }
+  article p { margin: 0 0 13px; }
+  article ul { margin: 0 0 14px; padding-left: 20px; }
+  article li { margin-bottom: 5px; }
+  article hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0; }
+  article blockquote {
+    margin: 0 0 14px; padding: 2px 0 2px 14px; border-left: 3px solid var(--accent);
+    color: var(--muted);
+  }
+  article code {
+    background: var(--chip); border-radius: 4px; padding: 1px 5px; font-size: 0.85em;
+  }
+  a.t {
+    font-variant-numeric: tabular-nums; font-size: 0.85em; background: var(--chip);
+    border: 1px solid var(--line); border-radius: 5px; padding: 0 5px;
+    color: var(--accent); text-decoration: none; white-space: nowrap; font-weight: 600;
+  }
+  a.t:hover { border-color: var(--accent); }
+
+  .tablewrap { overflow-x: auto; margin: 0 0 16px; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.87rem; }
+  th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line);
+           vertical-align: top; }
+  th { color: var(--muted); font-size: 0.76rem; text-transform: uppercase;
+       letter-spacing: 0.05em; }
+
+  /* Way back out of an entry. The nav has one too, but after scrolling a
+     long summary the top of the article is where you look. */
+  a.back {
+    display: inline-block; margin-bottom: 16px; font-size: 0.83rem;
+    color: var(--muted); text-decoration: none;
+  }
+  /* The literal character, not a CSS escape: this block is a plain Python
+     string, so a backslash-2190 in it reads as the octal escape  then "90". */
+  a.back::before { content: "←"; margin-right: 7px; }
+  a.back:hover { color: var(--accent); }
+
+  .head { border-bottom: 1px solid var(--line); padding-bottom: 16px; margin-bottom: 22px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+  .chips span, .chips a {
+    font-size: 0.73rem; background: var(--chip); border: 1px solid var(--line);
+    border-radius: 999px; padding: 3px 9px; color: var(--muted); text-decoration: none;
+  }
+  .chips .arg { color: var(--accent); border-color: var(--accent); }
+
+  .shot { margin: 20px 0 24px; }
+  figure { margin: 0 0 12px; }
+  figure img {
+    width: 100%; display: block; border-radius: 9px; border: 1px solid var(--line);
+    cursor: zoom-in; background: var(--card);
+  }
+  figcaption { font-size: 0.8rem; color: var(--muted); margin-top: 7px; line-height: 1.45; }
+  figcaption .note {
+    display: block; margin-top: 3px; font-size: 0.73rem; opacity: 0.8; font-style: italic;
+  }
+  .pair { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
+  .pair figure { margin: 0; }
+  @media (max-width: 560px) { .pair { grid-template-columns: 1fr; } }
+  .claim-note {
+    font-size: 0.86rem; color: var(--fg); border-left: 3px solid var(--accent);
+    padding-left: 12px; margin: 10px 0 0;
+  }
+
+  #lb {
+    display: none; position: fixed; inset: 0; z-index: 50; background: rgba(0,0,0,0.88);
+    align-items: center; justify-content: center; padding: 24px; cursor: zoom-out;
+  }
+  #lb.on { display: flex; }
+  #lb img { max-width: 100%; max-height: 84vh; border-radius: 8px; display: block; }
+  #lb .cap { color: #ddd; font-size: 0.82rem; margin-top: 10px; max-width: 760px; }
+</style>
+<script src="../../../assets/site.js"></script>
+</head>
+<body>
+<nav class="nav"><div class="inner">
+  <a class="brand" href="../../../">Alternative Ancient History <span>Summarized</span></a>
+  <a class="tab" href="../../../">Why Alternative Ancient History</a>
+  <a class="tab soon" href="../../../gallery/">The table</a>
+  <a class="tab" href="../../../kb/" aria-current="page">Knowledge base</a>
+  <a class="tab" href="../../../search/">Search transcripts</a>
+  <a class="tab soon" href="../../../faq/">FAQ</a>
+  <button type="button" id="theme" aria-label="Switch theme" title="Switch theme"></button>
+</div></nav>
+
+<div class="wrap">
+<a class="back" href="../../">Knowledge base</a>
+<article>
+<div class="head">
+  <p class="kicker">UnchartedX</p>
+  <h1>The Architecture of Machu Picchu - Part 2</h1>
+  <p class="sub">
+    Ben &middot; 47 min &middot;
+    <a href="https://youtu.be/31SFLloQ-hU" target="_blank" rel="noopener">watch on YouTube</a>
+    &middot; summarised 2026-09-30
+  </p>
+  <div class="chips"><span class="arg">two-industries</span><span class="arg">out-of-sequence</span><span class="arg">how</span><span class="arg">scale</span><span class="arg">dating</span><span class="arg">mainstream</span><span>megalithic-styles</span><span>polygonal-masonry</span><span>reuse-and-repair</span><span>restoration-as-original</span><span>star-alignments</span><span>water-management</span><span>dating-and-chronology</span><span>massive-stones-moved</span><span>quarries</span></div>
+</div>
+<p>Part two of two, and the half that carries the stonework. <a href="../JMAKRKkdOlw/">Part one</a> is the history — how the site came to notice and what the accepted date rests on — and Ben says at the start of this one that he assumes you have seen it. He also flags the change of register: <em>"this video will be a little different, it's a little less formal."</em></p>
+<p>It is organised as a walk through four areas: the terraces, the urban area, Huayna Picchu, and the megalithic core. Two of those carry arguments; the last eight minutes are advice on planning a visit and are not summarised here.</p>
+<hr>
+<h2>The terraces, and where Ben stops short</h2>
+<p>The terracing is the one part of the site Ben hands almost entirely to the Inca: <em>"I think that 99% of the terracing that you find throughout the Sacred Valley is the Ukun Pacha or the Incan style architecture"</em> <a class="t" href="https://youtu.be/31SFLloQ-hU?t=352" target="_blank" rel="noopener">05:52–06:20</a>. A Peruvian guide sets out the agricultural system <a class="t" href="https://youtu.be/31SFLloQ-hU?t=143" target="_blank" rel="noopener">02:23–05:52</a> — three bands of terracing at roughly <strong>2,100 m, 2,700 m and 3,600 m</strong>, each growing a different crop range at the same time of year, with the lowest producing tropical fruit and the highest only potatoes. He adds that one theory has the Machu Picchu terraces used as a single large garden for <strong>coca</strong>, the leaf being smaller and, on his account, stronger at this altitude than lower down.</p>
+<p>Where Ben departs is on a subset of the retaining walls: some are <em>"just absolutely huge relative to the rest of the work around the site"</em>, imprecise but massive, and made of the same white granite as the core. He marks the status of this himself, twice in one sentence <a class="t" href="https://youtu.be/31SFLloQ-hU?t=436" target="_blank" rel="noopener">07:16–07:45</a>:</p>
+<blockquote><em>"My guess on these imprecise but massive retaining walls — and a guess is really all that it is — is that I think these are older, and that they're part of the original landscaping."</em></blockquote>
+<p>The reason he gives is that very large stones in retaining walls and terracing are not a common Inca approach, while conceding that the Inca were recorded moving large stones.</p>
+<div class="shot"><figure>
+  <img src="img/g_0048.jpg" alt="two very different scales of walling within a few metres of each other" loading="lazy"
+       data-cap="A PHOTOGRAPH looking down over terracing. In the middle distance a retaining wall is built of large, irregular, roughly shaped blocks, several of them chest-high, supporting a treed knoll; in front of and below it run terrace walls of much smaller, flatter, neatly laid stones. Thatched buildings and visitors are at the left, a sheer cliff face behind.">
+  <figcaption><a class="t" href="https://youtu.be/31SFLloQ-hU?t=470" target="_blank" rel="noopener">0:07:50</a> A PHOTOGRAPH looking down over terracing. In the middle distance a retaining wall is built of large, irregular, roughly shaped blocks, several of them chest-high, supporting a treed knoll; in front of and below it run terrace walls of much smaller, flatter, neatly laid stones. Thatched buildings and visitors are at the left, a sheer cliff face behind.<span class="note">no · UnchartedX watermark, lower right</span></figcaption>
+</figure><p class="claim-note">Retaining walls at the site that are much larger and rougher than the terracing around them.</p></div>
+<hr>
+<h2>The chroniclers, and what they actually describe</h2>
+<p>This is the substantial section, and it is unusual because it takes on the evidence normally cited <em>against</em> the argument rather than ignoring it <a class="t" href="https://youtu.be/31SFLloQ-hU?t=596" target="_blank" rel="noopener">09:56–15:07</a>. Sixteenth-century Spaniards watched Inca stonework in progress and wrote it down. Those accounts are routinely used as proof the Inca built these sites. Ben's reading is that they describe <strong>repair and restoration</strong>.</p>
+<p>The quotations, as given:</p>
+<div class="tablewrap"><table><thead><tr><th>who</th><th>what is quoted</th></tr></thead><tbody><tr><td><strong>Juan de Betanzos</strong></td><td><em>"[He] ordered the entire crowd to pull the ropes with which it was tied"</em></td></tr><tr><td><strong>Garcilaso de la Vega</strong></td><td><em>"They did not have any ingenuity to climb and descend the stones. They did everything by force of arms"</em></td></tr><tr><td><strong>Garcilaso de la Vega</strong>, on tools</td><td><em>"The stonemasons had no other instruments to carve the stones than some black pebbles they called</em> hihuana<em>, with which they carve them by crushing rather than cutting"</em></td></tr><tr><td><strong>Gutiérrez de Santa Clara</strong></td><td>they stacked larger stones by building earthen ramps, hauling the stone up by main force, then removing the ramp</td></tr></tbody></table></div>
+<p>Ben's summary of the method they describe: ropes of llama hair and leather, a few thousand people pulling, no levers, no wheels, no rollers, no logs, and shaping by striking stone with stone. His position on what that can account for is explicit: it <em>"can really not explain that incredible precision that we see in a lot of the tight-fitting megalithic walls,"</em> but <em>"it certainly does explain how the Ukun Pacha work or the Incan style work might well have been done."</em></p>
+<p>He also does not claim the Inca rebuilt everything: <em>"I'm not saying that they rebuilt all of the megalithic work. I do think that some parts of the original megalithic installations survived."</em></p>
+<p>The second half of the section is a figure from the same chroniclers that he says is reported less often: that the <strong>nearest quarry for Sacsayhuamán was about 25 km away and the farthest around 75 km</strong>, across terrain above 10,000 ft. Set beside a civilisation he gives roughly 150 years at its peak, he puts the difficulty as a question of imagination rather than of arithmetic. He names the comparison he has in mind — the same <em>"national project, beer and blankets"</em> account used for the Great Pyramid, which he attributes to <strong>Zahi Hawass</strong>.</p>
+<hr>
+<h2>The succession argument, brought in from Cusco</h2>
+<p>A clip of <strong>Brien Foerster</strong> that Ben says he has used before <a class="t" href="https://youtu.be/31SFLloQ-hU?t=934" target="_blank" rel="noopener">15:34–18:26</a>. The argument is about sequence rather than stonework, and it runs:</p>
+<ul><li>the Inca were driven out of the Lake Titicaca region by the <strong>Aymara</strong> about a thousand years ago</li><li>following a road north, they met a megalithic gate called <strong>Anta Punku</strong> about an hour's drive short of Cusco, then more megalithic structures, then Cusco itself — which they found abandoned and megalithic</li><li>the Coricancha already stood; the first ruler judged it too significant to live in and took a megalithic ruin on the hill instead, ordering it rebuilt as his palace</li><li>under the <strong>panaca</strong> system each successive high Inca had to establish his own household rather than inherit his father's, so each took another megalithic ruin and rebuilt it</li><li>by the eighth high Inca there were none left, so the ninth, tenth and eleventh <strong>built from scratch — in small blocks and adobe, with no megalithic work at all</strong></li></ul>
+<p>Foerster's conclusion, as he puts it: if the Inca were responsible for the megalithic work, they would have had to begin with profound capability and <em>"slid downhill for the next five hundred years, which is not the case."</em></p>
+<hr>
+<h2>The urban area, and the argument Ben makes against himself</h2>
+<p>A couple of dozen dwellings, which Ben reads as well-made Inca work, in many cases on megalithic foundations. Bingham's description is quoted <a class="t" href="https://youtu.be/31SFLloQ-hU?t=1106" target="_blank" rel="noopener">18:26–19:22</a>: houses <em>"of a story and a half in height with gable ends,"</em> the gables <em>"marked by cylindrical projecting stones carrying out the idea of the wooden rafters which have disappeared."</em></p>
+<p>The video shows what Bingham meant, on a reconstructed roof: rafters lashed with cord to the cylindrical stones projecting from the gable.</p>
+<p>Those stones turn out to be the interesting thing, because the same shape — cylindrical, sometimes square — also appears in the megalithic core <a class="t" href="https://youtu.be/31SFLloQ-hU?t=1216" target="_blank" rel="noopener">20:16–21:12</a>, including inside the chamber beneath the Sun Temple, where a rafter would have nothing to hold up. Ben notes they also turn up loose on the ground and used as ordinary filler in rough walls, and says he is not sure what to make of that.</p>
+<div class="shot"><div class="pair"><figure>
+  <img src="img/g_0122.jpg" alt="what the projecting stones are for, on a reconstructed roof" loading="lazy"
+       data-cap="A CLOSE PHOTOGRAPH of a gable end under a restored thatched roof. Pale cylindrical stones project from the stonework at intervals, and a long timber rafter runs down the slope of the gable, lashed to them with cord. The valley and far ridges are beyond.">
+  <figcaption><a class="t" href="https://youtu.be/31SFLloQ-hU?t=1210" target="_blank" rel="noopener">0:20:10</a> A CLOSE PHOTOGRAPH of a gable end under a restored thatched roof. Pale cylindrical stones project from the stonework at intervals, and a long timber rafter runs down the slope of the gable, lashed to them with cord. The valley and far ridges are beyond.<span class="note">no · UnchartedX watermark, lower right</span></figcaption>
+</figure><figure>
+  <img src="img/g_0125.jpg" alt="the same cylindrical form inside a roofed chamber, where a rafter would hold nothing" loading="lazy"
+       data-cap="A PHOTOGRAPH inside a rock shelter. A massive slab of bedrock overhangs from the upper left; beneath and behind it stands finely coursed masonry in shadow, and a pale cylindrical stone projects horizontally from the wall at the upper right. In the right foreground, cut bedrock steps down in smooth planar faces.">
+  <figcaption><a class="t" href="https://youtu.be/31SFLloQ-hU?t=1240" target="_blank" rel="noopener">0:20:40</a> A PHOTOGRAPH inside a rock shelter. A massive slab of bedrock overhangs from the upper left; beneath and behind it stands finely coursed masonry in shadow, and a pale cylindrical stone projects horizontally from the wall at the upper right. In the right foreground, cut bedrock steps down in smooth planar faces.<span class="note">no · UnchartedX watermark, lower right</span></figcaption>
+</figure></div><p class="claim-note">The same projecting cylindrical form in the rough buildings and in the megalithic work.</p></div>
+<p>Then he states the objection to his own case, which is the part of this video worth reading closely:</p>
+<blockquote><em>"I do want to acknowledge that there is an alternative argument to be made here, because we have the same shapes reflected in the Incan style architecture and in the megalithic architecture… that could be used as an argument to suggest that these same people or the same culture built all of this same architecture."</em></blockquote>
+<p>He says he does not think so, gives his reasons — the Inca origin stories, the Younger Dryas, the extended human timeline, and the gap in technological level between the styles — and then lands here <a class="t" href="https://youtu.be/31SFLloQ-hU?t=1272" target="_blank" rel="noopener">21:12–22:08</a>:</p>
+<blockquote><em>"Ultimately I think the only answer somebody can come to today is really: I don't know. There just isn't enough evidence to conclusively prove this one way or the other… when it comes to South America this is all really circumstantial evidence."</em></blockquote>
+<hr>
+<h2>The Sun Temple</h2>
+<p>The curved wall, which Ben says is rare in Peru though not unheard of — he offers the Coricancha as the other example — and which he notes is called a sun temple on the strength of that curve rather than on any known original function: <em>"we really have no way of knowing whether or not that had anything to do with their original purpose"</em> <a class="t" href="https://youtu.be/31SFLloQ-hU?t=1328" target="_blank" rel="noopener">22:08–22:40</a>. He says the building casts a shadow marking the solstice.</p>
+<p>Two observations about its construction <a class="t" href="https://youtu.be/31SFLloQ-hU?t=1356" target="_blank" rel="noopener">22:36–23:45</a>:</p>
+<ul><li>seen <strong>from above and behind</strong>, an angle he says visitors rarely take, the wall wraps around a large mass of carved bedrock — Hanan Pacha work — which he reads as the building being built protectively around something older, and which he notes reduces its usefulness as a building</li><li>the <strong>top courses have been restored</strong>, and the work in them is visibly poorer than what is below</li></ul>
+<div class="shot"><div class="pair"><figure>
+  <img src="img/g_0135.jpg" alt="the curved wall standing on the bedrock mass" loading="lazy"
+       data-cap="A PHOTOGRAPH looking up at the curved wall from outside. Regular coursed blocks sweep round in a semicircle above a huge sloping mass of grey bedrock that the wall sits directly upon; a trapezoidal window with two small projecting stubs beside it breaks the upper courses, and a row of small knobs runs along the wall&#x27;s left edge against a deep blue sky.">
+  <figcaption><a class="t" href="https://youtu.be/31SFLloQ-hU?t=1340" target="_blank" rel="noopener">0:22:20</a> A PHOTOGRAPH looking up at the curved wall from outside. Regular coursed blocks sweep round in a semicircle above a huge sloping mass of grey bedrock that the wall sits directly upon; a trapezoidal window with two small projecting stubs beside it breaks the upper courses, and a row of small knobs runs along the wall's left edge against a deep blue sky.<span class="note">no · UnchartedX watermark, lower right</span></figcaption>
+</figure><figure>
+  <img src="img/g_0139.jpg" alt="the wall enclosing the carved bedrock, from the angle the narration says is rarely taken" loading="lazy"
+       data-cap="A PHOTOGRAPH looking down into the curved building from above and behind. The semicircular wall of coursed blocks encloses a large irregular mass of pale grey bedrock which fills most of the interior, its upper surface cut into flat planes and steps. Two trapezoidal windows pierce the far wall; rough walling and vegetation lie beyond.">
+  <figcaption><a class="t" href="https://youtu.be/31SFLloQ-hU?t=1380" target="_blank" rel="noopener">0:23:00</a> A PHOTOGRAPH looking down into the curved building from above and behind. The semicircular wall of coursed blocks encloses a large irregular mass of pale grey bedrock which fills most of the interior, its upper surface cut into flat planes and steps. Two trapezoidal windows pierce the far wall; rough walling and vegetation lie beyond.<span class="note">no · UnchartedX watermark, lower right</span></figcaption>
+</figure></div><p class="claim-note">That the curved building was built around an older mass of carved bedrock.</p></div>
+<div class="shot"><figure>
+  <img src="img/g_0142.jpg" alt="the difference between the original coursing and the rebuilt top" loading="lazy"
+       data-cap="A PHOTOGRAPH of the upper part of the curved wall. Below, the courses are regular, of even height and closely fitted, with a trapezoidal window and projecting stubs. The topmost course is visibly different — thicker, more irregular slabs of varying size laid unevenly along the rim. A modern handrail and glass panel are at the lower left.">
+  <figcaption><a class="t" href="https://youtu.be/31SFLloQ-hU?t=1410" target="_blank" rel="noopener">0:23:30</a> A PHOTOGRAPH of the upper part of the curved wall. Below, the courses are regular, of even height and closely fitted, with a trapezoidal window and projecting stubs. The topmost course is visibly different — thicker, more irregular slabs of varying size laid unevenly along the rim. A modern handrail and glass panel are at the lower left.<span class="note">no · UnchartedX watermark, lower right</span></figcaption>
+</figure><p class="claim-note">That the top of the building has been rebuilt to a lower standard than the work beneath it.</p></div>
+<p>Underneath it is a chamber of curved and flowing forms merging into the native rock, roped off to visitors now. Ben says he is showing archival photographs of the interior instead, and points out a protruding cylindrical shape in there — the same form as on the house gables, but in a cave, where a rafter explanation does not apply — and something he says resembles an Intihuatana stone, while noting that a stone for tracking the sun is an odd thing to find out of sight of it.</p>
+<div class="shot"><figure>
+  <img src="img/g_0144.jpg" alt="the carved forms merging into the living rock in the closed chamber" loading="lazy"
+       data-cap="A PHOTOGRAPH inside the chamber beneath the curved building. A vast smooth slab of bedrock overhangs from the upper left; beneath it the rock has been cut into a flight of stepped forms and smooth curved surfaces that run into the natural stone with no visible joint. Coursed masonry and a stair are at the right. The head and shoulder of a visitor fill the right foreground, and the image is cross-faded with another shot.">
+  <figcaption><a class="t" href="https://youtu.be/31SFLloQ-hU?t=1430" target="_blank" rel="noopener">0:23:50</a> A PHOTOGRAPH inside the chamber beneath the curved building. A vast smooth slab of bedrock overhangs from the upper left; beneath it the rock has been cut into a flight of stepped forms and smooth curved surfaces that run into the natural stone with no visible joint. Coursed masonry and a stair are at the right. The head and shoulder of a visitor fill the right foreground, and the image is cross-faded with another shot.<span class="note">no — the ghosting is an editing cross-fade · UnchartedX watermark, lower right</span></figcaption>
+</figure><p class="claim-note">The carved forms merging into the native rock in the chamber below, now closed to visitors.</p></div>
+<p>He also points out what Bingham called <strong>the best made wall in all of Machu Picchu</strong>, standing in the middle of the urban area <a class="t" href="https://youtu.be/31SFLloQ-hU?t=1470" target="_blank" rel="noopener">24:30–24:58</a>.</p>
+<div class="shot"><figure>
+  <img src="img/g_0149.jpg" alt="the wall Bingham called the best made at the site" loading="lazy"
+       data-cap="A PHOTOGRAPH along a long wall receding into the distance. It is built of large rectangular blocks in even horizontal courses, each face slightly pillowed and the joints fine and continuous, the whole surface a uniform grey-violet. A thatched roof and a mountain peak appear at the far left.">
+  <figcaption><a class="t" href="https://youtu.be/31SFLloQ-hU?t=1480" target="_blank" rel="noopener">0:24:40</a> A PHOTOGRAPH along a long wall receding into the distance. It is built of large rectangular blocks in even horizontal courses, each face slightly pillowed and the joints fine and continuous, the whole surface a uniform grey-violet. A thatched roof and a mountain peak appear at the far left.<span class="note">no · UnchartedX watermark, lower right</span></figcaption>
+</figure><p class="claim-note">The wall Bingham singled out as the best made on the site.</p></div>
+<hr>
+<h2>Water</h2>
+<p>Carved channels run through the site, some still flowing, with blocks inside the houses shaped as part of the system and stone basins in several structures <a class="t" href="https://youtu.be/31SFLloQ-hU?t=1498" target="_blank" rel="noopener">24:58–25:53</a>. Ben notes channels emerging from the sides of buried blocks at high levels, which he reads as a deeper layer of construction.</p>
+<p>Bingham's conclusion about the water is the checkable part: he traced it to springs perhaps a mile along the mountainside and <strong>did not think there was enough of it to support a large population</strong>, which Ben offers as a possible reason the site was abandoned before the Spanish arrived.</p>
+<div class="shot"><figure>
+  <img src="img/g_0156.jpg" alt="a channel opening at ground level below the stonework" loading="lazy"
+       data-cap="A PHOTOGRAPH looking straight down at the foot of a wall of rough, mossy, irregular stones. Set into the ground at its base is a rectangular opening framed by cut slabs, with a dark cavity below in which a channel is visible. The photographer&#x27;s shoes are at the bottom of the frame.">
+  <figcaption><a class="t" href="https://youtu.be/31SFLloQ-hU?t=1550" target="_blank" rel="noopener">0:25:50</a> A PHOTOGRAPH looking straight down at the foot of a wall of rough, mossy, irregular stones. Set into the ground at its base is a rectangular opening framed by cut slabs, with a dark cavity below in which a channel is visible. The photographer's shoes are at the bottom of the frame.<span class="note">no · UnchartedX watermark, lower right</span></figcaption>
+</figure><p class="claim-note">The carved water system, and channels emerging from buried stonework.</p></div>
+<hr>
+<h2>Huayna Picchu, and a man falling off it</h2>
+<p>The peak behind the site carries a carved path, terraces and a few gabled structures, most of it cleared in modern times <a class="t" href="https://youtu.be/31SFLloQ-hU?t=1581" target="_blank" rel="noopener">26:21–27:18</a>. Ben reads out, at length, the account of Bingham's assistant topographer <strong>Heald</strong> attempting the climb <a class="t" href="https://youtu.be/31SFLloQ-hU?t=1720" target="_blank" rel="noopener">28:40–32:50</a> — cutting through mesquite with a machete, going on ahead of his exhausted crew, and then the fall:</p>
+<blockquote><em>"I was just climbing out on top of the lowest back plate when the grass and soil under my feet let go and I dropped for about 20 feet. There was a slope of about 70 degrees and then a jump of some 200 feet… as I shot down the sloping surface I reached out and with my right hand grasped a mesquite branch that was growing in a crack about five feet above the jump-off… the jerk broke the ligaments holding the outer ends of the clavicle and scapula together."</em></blockquote>
+<p>What Heald reported from that first attempt is worth separating from the story: <em>"On this trip I saw no sign of Inca work except one small ruined wall."</em> He reached the summit about a week later.</p>
+<p>The footage running under the reading is of a different place — the <strong>Inca bridge</strong>, a trail cut along a sheer granite cliff face in the opposite direction from Huayna Picchu, which Ben says plainly at <a class="t" href="https://youtu.be/31SFLloQ-hU?t=1638" target="_blank" rel="noopener">27:18–28:12</a>.</p>
+<hr>
+<h2>The Temple of the Three Windows, and how many windows it has</h2>
+<p>Bingham thought the three windows might connect the building to the Inca origin legend — the three brothers leaving through three windows or caves — and that Machu Picchu might therefore be <strong>Tampu-tocco</strong>, the mythical place of origin <a class="t" href="https://youtu.be/31SFLloQ-hU?t=2026" target="_blank" rel="noopener">33:46–35:35</a>. Ben quotes him on it and then disagrees, on geography: Machu Picchu is north of Cusco, and the evidence he cites points to Inca origins to the south-west, toward Titicaca and Tiwanaku.</p>
+<p>His second objection is physical and anyone can check it <a class="t" href="https://youtu.be/31SFLloQ-hU?t=2162" target="_blank" rel="noopener">36:02–36:57</a>. <strong>There are more than three windows in the wall.</strong> The video shows it directly: three open windows with the valley visible through them, and beside them two further window-shaped openings filled in with masonry. Bingham noticed the same thing and wrote it into a photograph caption:</p>
+<blockquote><em>"An exterior view of part of the Temple of the Three Windows, showing the location of a former window which was filled up at some time in the past, when it was considered suitable to reduce the number of windows in this remarkable structure from five to three. Tradition says that the Incas' ancestors came out of three caves, or windows."</em></blockquote>
+<p><strong>Five reduced to three</strong>, on Bingham's own account, in the building whose three windows were his reason for the identification. His caption carries a reference the narration does not read out — <em>(See Markham's "Incas of Peru," Chapter IV.)</em></p>
+<div class="shot"><figure>
+  <img src="img/g_0218.jpg" alt="five window openings, of which two have been filled in" loading="lazy"
+       data-cap="A PHOTOGRAPH along the inside of a wall of very large, tightly fitted blocks. At the right, three tall trapezoidal windows stand open with the valley and cloud visible through them. At the left, two further openings of the same shape are FILLED with fitted stone — one completely blocked, the other reduced to a shallow recess. A continuous lintel course runs above all five.">
+  <figcaption><a class="t" href="https://youtu.be/31SFLloQ-hU?t=2170" target="_blank" rel="noopener">0:36:10</a> A PHOTOGRAPH along the inside of a wall of very large, tightly fitted blocks. At the right, three tall trapezoidal windows stand open with the valley and cloud visible through them. At the left, two further openings of the same shape are FILLED with fitted stone — one completely blocked, the other reduced to a shallow recess. A continuous lintel course runs above all five.<span class="note">no · UnchartedX watermark, lower right</span></figcaption>
+</figure><p class="claim-note">That the Temple of the Three Windows has more than three window openings.</p></div>
+<div class="shot"><figure>
+  <img src="img/g_0221.jpg" alt="the five-to-three reduction stated in print in 1913, with its source" loading="lazy"
+       data-cap="A PHOTOGRAPH of a black-and-white plate in a book, credited &quot;Photo by Hiram Bingham&quot; and titled &quot;THE TEMPLE OF THE THREE WINDOWS: MACHU PICCHU&quot;. It shows the wall from outside, with a small figure standing at its base for scale. The printed caption below is legible: &quot;An exterior view of part of the Temple of the Three Windows, showing the location of a former window which was filled up at some time in the past when it was considered suitable to reduce the number of windows in this remarkable structure from five to three. Tradition says that the Incas&#x27; ancestors came out of three caves, or windows. (See Markham&#x27;s &#x27;Incas of Peru,&#x27; Chapter IV.)&quot;">
+  <figcaption><a class="t" href="https://youtu.be/31SFLloQ-hU?t=2200" target="_blank" rel="noopener">0:36:40</a> A PHOTOGRAPH of a black-and-white plate in a book, credited "Photo by Hiram Bingham" and titled "THE TEMPLE OF THE THREE WINDOWS: MACHU PICCHU". It shows the wall from outside, with a small figure standing at its base for scale. The printed caption below is legible: "An exterior view of part of the Temple of the Three Windows, showing the location of a former window which was filled up at some time in the past when it was considered suitable to reduce the number of windows in this remarkable structure from five to three. Tradition says that the Incas' ancestors came out of three caves, or windows. (See Markham's 'Incas of Peru,' Chapter IV.)"<span class="note">no · UnchartedX watermark, lower right</span></figcaption>
+</figure><p class="claim-note">That the reduction from five windows to three was recorded in 1913.</p></div>
+<hr>
+<h2>The Intihuatana, and the claim that can be checked twice a year</h2>
+<p>The highest point on the site, and the video's closing argument <a class="t" href="https://youtu.be/31SFLloQ-hU?t=2217" target="_blank" rel="noopener">36:57–39:43</a>.</p>
+<p>Ben sets out the existing readings — that it is a sundial, or a solstice marker — and argues for a third: that it marks the <strong>equinoxes</strong>. The chain:</p>
+<p>1. the four faces of the stone mark north, south, east and west 2. the top of the stone is not flat; it is tilted by about <strong>13½ degrees</strong> 3. Machu Picchu lies at about <strong>13½ degrees south</strong> 4. on the equinoxes, with the sun over the top of the stone, it casts <strong>no shadow at all</strong></p>
+<p>The angled top is visible in the video's own close footage. The other three steps are spoken. What runs under step 4 is a <strong>stock astronomy graphic</strong>, not UnchartedX's own and not about this site, headed <em>"EQUINOX — From Latin for 'Equal Nights'"</em>, whose printed text reads: <em>"At equinox, the sun is overhead at the equator and days and nights are equal in duration."</em></p>
+<div class="shot"><figure>
+  <img src="img/g_0229.jpg" alt="what is on screen while the equinox step of the argument is made" loading="lazy"
+       data-cap="A STOCK ASTRONOMY GRAPHIC, not the channel&#x27;s own. A stylised sun at the left sends a yellow arrow to a rendered globe at the right, on which the Tropic of Cancer, the Equator and the Tropic of Capricorn are drawn and labelled. Printed text reads &quot;EQUINOX — From Latin for &#x27;Equal Nights&#x27;&quot; and, below, &quot;At equinox, the sun is overhead at the equator and days and nights are equal in duration.&quot;">
+  <figcaption><a class="t" href="https://youtu.be/31SFLloQ-hU?t=2280" target="_blank" rel="noopener">0:38:00</a> A STOCK ASTRONOMY GRAPHIC, not the channel's own. A stylised sun at the left sends a yellow arrow to a rendered globe at the right, on which the Tropic of Cancer, the Equator and the Tropic of Capricorn are drawn and labelled. Printed text reads "EQUINOX — From Latin for 'Equal Nights'" and, below, "At equinox, the sun is overhead at the equator and days and nights are equal in duration."<span class="note">no — all lettering is the graphic&#x27;s own · UnchartedX watermark, lower right</span></figcaption>
+</figure><p class="claim-note">What the video shows while explaining the equinox.</p></div>
+<p>What runs under step 3 is <strong>Google Earth</strong>. In the wider view the globe carries its standard latitude lines; in the closer view the site is pinned and labelled, and the pin falls between the gridlines marked <strong>S13°02'</strong> and <strong>S13°09'</strong>, with Ollantaytambo pinned to the south-east. The spoken figure is "around 13 and a half degrees south".</p>
+<div class="shot"><figure>
+  <img src="img/f_0015.jpg" alt="where the video places the site on the latitude grid" loading="lazy"
+       data-cap="A SCREENSHOT of Google Earth, © 2020, showing satellite terrain of the Peruvian Andes with a white latitude and longitude grid drawn over it. &quot;Machu Picchu&quot; is labelled beside a red marker at the lower centre, falling between the gridlines marked S13°02&#x27; and S13°09&#x27;. &quot;Ollantaytambo&quot; is pinned in yellow to the lower right; longitude lines from W72°09&#x27; to W72°51&#x27; run across the top.">
+  <figcaption><a class="t" href="https://youtu.be/31SFLloQ-hU?t=2323" target="_blank" rel="noopener">0:38:43</a> A SCREENSHOT of Google Earth, © 2020, showing satellite terrain of the Peruvian Andes with a white latitude and longitude grid drawn over it. "Machu Picchu" is labelled beside a red marker at the lower centre, falling between the gridlines marked S13°02' and S13°09'. "Ollantaytambo" is pinned in yellow to the lower right; longitude lines from W72°09' to W72°51' run across the top.<span class="note">no — the grid and pins are Google Earth&#x27;s · UnchartedX watermark, lower right; Google Earth attribution across the lower edge</span></figcaption>
+</figure><p class="claim-note">The latitude of Machu Picchu, as the video displays it.</p></div>
+<p>His own conclusion is stated as a conviction rather than a result — <em>"I'm fairly convinced that this isn't accidental"</em> — and he draws out what he takes to be the chicken-and-egg problem: to cut the angle correctly you would need either to know the site's latitude, or to know the date of the equinoxes and mark the stone when the sun was overhead. He then sets it against the accepted account: a refuge built for one ruler and abandoned inside eighty years, against what he suggests might be a solar observatory used over a longer period. He adds that the stone looks to him like part of a single much larger carving, the platform it stands on included.</p>
+<div class="shot"><div class="pair"><figure>
+  <img src="img/g_0228.jpg" alt="the stone in its setting, with the angled upper surface visible" loading="lazy"
+       data-cap="A PHOTOGRAPH of the Intihuatana stone on its terrace. A carved granite mass rises in broad stepped planes from the bedrock platform, and from its upper surface a squared upright projection stands about knee height, its top cut flat. The upper surface the projection rises from is visibly not level. Terraces, the gorge and cloud-covered ridges are behind; a low stone bench stands at the right.">
+  <figcaption><a class="t" href="https://youtu.be/31SFLloQ-hU?t=2270" target="_blank" rel="noopener">0:37:50</a> A PHOTOGRAPH of the Intihuatana stone on its terrace. A carved granite mass rises in broad stepped planes from the bedrock platform, and from its upper surface a squared upright projection stands about knee height, its top cut flat. The upper surface the projection rises from is visibly not level. Terraces, the gorge and cloud-covered ridges are behind; a low stone bench stands at the right.<span class="note">no · UnchartedX watermark, lower right</span></figcaption>
+</figure><figure>
+  <img src="img/g_0237.jpg" alt="the cut planes and the slope of the upper face at close range" loading="lazy"
+       data-cap="A CLOSE PHOTOGRAPH of the same stone from the side. The cut surfaces are smooth and planar, meeting along straight edges in a stepped arrangement, with a broad flat face sloping down to the right across the frame. The granite is pale and finely granular; bare earth is beyond.">
+  <figcaption><a class="t" href="https://youtu.be/31SFLloQ-hU?t=2360" target="_blank" rel="noopener">0:39:20</a> A CLOSE PHOTOGRAPH of the same stone from the side. The cut surfaces are smooth and planar, meeting along straight edges in a stepped arrangement, with a broad flat face sloping down to the right across the frame. The granite is pale and finely granular; bare earth is beyond.<span class="note">no · UnchartedX watermark, lower right</span></figcaption>
+</figure></div><p class="claim-note">The stone whose angled top is the video's closing argument.</p></div>
+<p>Two things he records around it. Other Intihuatana stones existed — one still stands at <strong>Písac</strong> — and the rest were destroyed by the Spanish as objects of pagan worship. And the Machu Picchu stone was <strong>damaged in 2000</strong>, when, he says, a crane being used to film a beer commercial fell on it and chipped one of its edges, prompting local protests.</p>
+<div class="shot"><figure>
+  <img src="img/g_0226.jpg" alt="the stone as photographed some time in the past, with a figure for scale" loading="lazy"
+       data-cap="A HISTORIC BLACK-AND-WHITE PHOTOGRAPH, high contrast and backlit. A person in traditional Andean dress — wide hat, fringed shawl, long skirt — stands on a stone platform beside a small upright stone, holding a fine line or thread that hangs down toward it. Cloud fills the sky behind and a mountain ridge runs across the lower right. Scratches and spotting from the original print are visible.">
+  <figcaption><a class="t" href="https://youtu.be/31SFLloQ-hU?t=2250" target="_blank" rel="noopener">0:37:30</a> A HISTORIC BLACK-AND-WHITE PHOTOGRAPH, high contrast and backlit. A person in traditional Andean dress — wide hat, fringed shawl, long skirt — stands on a stone platform beside a small upright stone, holding a fine line or thread that hangs down toward it. Cloud fills the sky behind and a mountain ridge runs across the lower right. Scratches and spotting from the original print are visible.<span class="note">no · UnchartedX watermark, lower right</span></figcaption>
+</figure><p class="claim-note">The stone as photographed before it was roped off.</p></div>
+<hr>
+<h2>What you can check yourself</h2>
+<ul><li><strong>The number of windows in the Temple of the Three Windows.</strong> Two blocked frames are visible in the video's own footage beside the three open ones, and Bingham's caption says five were reduced to three. Photographable by anyone standing in the building.</li><li><strong>Bingham's source for the legend</strong>, which his caption gives as Markham's <em>Incas of Peru</em>, Chapter IV.</li><li><strong>Whether the Intihuatana casts a shadow at the equinox.</strong> The claim is dated — twice a year — located, and falsifiable by anyone standing there with a camera on the day.</li><li><strong>The latitude of Machu Picchu</strong>, against the angle claimed for the top of the stone. The video shows a Google Earth view with the site pinned and the latitude grid drawn on it.</li><li><strong>The chronicler passages.</strong> Betanzos, Garcilaso de la Vega and Gutiérrez de Santa Clara are all published 16th-century sources; the quoted lines can be found and read in context.</li><li><strong>The quarry distances for Sacsayhuamán</strong>, given as about 25 km for the nearest and 75 km for the farthest.</li><li><strong>The top courses of the Sun Temple</strong>, where the restoration is said to be visibly poorer than the work below it — and is, in the frames shown.</li><li><strong>The cylindrical projecting stones</strong>, and whether the same form appears in both the rough buildings and the megalithic core, including inside a roofed chamber.</li><li><strong>Whether the Inca structures at Cusco attributed to the later rulers are small-block and adobe rather than megalithic</strong>, which is the testable half of the succession argument.</li></ul>
+<hr>
+<h2>What the video does not settle</h2>
+<ul><li><strong>Ben says so himself, at length.</strong> <em>"The only answer somebody can come to today is really: I don't know."</em> <em>"There isn't enough here to conclusively prove this one way or the other."</em> <em>"A guess is really all that it is."</em> Those are his words about his own position, in three separate places.</li><li><strong>He states the counter-argument to his own case and does not answer it.</strong> The same cylindrical stones and window shapes appear in both styles, which he acknowledges could indicate one culture. His reasons for reading it otherwise are the origin stories, the Younger Dryas and the difference in technological level — none of them from this site.</li><li><strong>The 13½-degree tilt is not measured.</strong> The angled top is filmed, but no instrument, survey figure or source for the angle appears anywhere in the video.</li><li><strong>The two statements of latitude do not match.</strong> The narration gives the site as "around 13 and a half degrees south"; the Google Earth view shown while he says it places the pin between the 13°02' and 13°09' gridlines. The video does not reconcile them, and the argument rests on the tilt and the latitude being the same number.</li><li><strong>The graphic used to explain the equinox is stock footage about the equator.</strong> Its printed text says the sun is overhead at the equator; the narration says it is over the top of the stone. No diagram of the stone, the sun angle or the shadow appears.</li><li><strong>The no-shadow effect is described, not shown.</strong> No equinox photograph or footage of the stone without a shadow is in the video.</li><li><strong>The solstice shadow at the Sun Temple is asserted the same way</strong>, with nothing shown.</li><li><strong>The chronicler quotations carry no edition, translator or page.</strong> Ben says he is translating from the original Spanish in the books; which books is not stated.</li><li><strong>The quarry distances are attributed to "these same 16th century chroniclers"</strong> without naming which one or where.</li><li><strong>The succession argument arrives entirely inside a clip and is sourced nowhere.</strong> The Aymara expulsion a thousand years ago, the panaca rule, and the boundary at the eighth high Inca are all asserted; no chronicler, excavation or publication is named for any of them.</li><li><strong>The images of the chamber beneath the Sun Temple are called archival and are not credited.</strong> Who took them or when is not given, a visitor appears in one of them, and the area is inaccessible now, so they cannot be re-shot.</li><li><strong>The photograph of the Intihuatana with a figure beside it is also uncredited</strong> and is not dated on screen.</li><li><strong>Heald's report and Ben's description of Huayna Picchu do not say the same thing.</strong> Ben describes a path, terraces and buildings on the peak; Heald's first ascent found <em>"no sign of Inca work except one small ruined wall."</em> The video notes that most of it was cleared in modern times but does not reconcile the two accounts directly.</li><li><strong>The beer-commercial crane is given as hearsay</strong> — <em>"apparently, according to the story"</em> — with no date beyond the year, source or photograph of the damage.</li><li><strong>Nothing here dates anything.</strong> As in part one, no physical dating evidence for the megalithic work is offered, and the video does not claim any.</li></ul>
+<hr>
+<h2>Names</h2>
+<p>The 2020 auto-caption track is the unpunctuated kind and mangles the proper nouns, as in part one. Machu Picchu is "much you picked you" throughout and Huayna Picchu is "quiner picked you", "wana picked you" and "Juana picture". Reconstructions flagged here:</p>
+<div class="tablewrap"><table><thead><tr><th>written here</th><th>as the captions give it</th></tr></thead><tbody><tr><td>Machu Picchu, Huayna Picchu</td><td>"much you picked you", "quiner picked you"</td></tr><tr><td>Intihuatana</td><td>"in - etana", "into Itano", "intuit onna"</td></tr><tr><td>Hanan Pacha, Ukun Pacha</td><td>"Hannan pocha", "oaken putter", "you can pocha"</td></tr><tr><td>Juan de Betanzos</td><td>"Juan de betanzos"</td></tr><tr><td>Gutiérrez de Santa Clara</td><td>"Gutierrez de Santa Clara"</td></tr><tr><td>Anta Punku</td><td>"anti punku"</td></tr><tr><td>Písac</td><td>"P sack", "pisac"</td></tr><tr><td>Urubamba</td><td>"Urim bomba", "Ihram bamboo"</td></tr><tr><td>Arteaga</td><td>"RTA ger", "Artur Hagar"</td></tr><tr><td>Brien Foerster</td><td>"Brian Forrester"</td></tr></tbody></table></div>
+<p><em>hihuana</em>, the name Garcilaso gives for the black pebbles used as hammerstones, is spoken once and is a reconstruction from the audio alone. <strong>Heald</strong>, Bingham's assistant topographer, is given only by surname in the video and no first name is recovered. The guide in the terracing clip is the same one as in part one, given there as "Roy Elio" and still unverified.</p>
+<p>One name came off the screen rather than the audio: the editor captions the megalithic core shots <strong>"Temple of the 3 Windows"</strong>, and Bingham's plate is titled <strong>"THE TEMPLE OF THE THREE WINDOWS: MACHU PICCHU"</strong> with the Markham reference printed beneath it.</p>
+</article>
+<p class="foot">
+  A summary of someone else's video, written to record the argument and the evidence offered
+  for it, not to endorse it. The images are stills from the video and belong to the channel;
+  each links back to the moment it was taken. Watch the original before relying on any wording.
+</p>
+
+</div>
+
+<div id="lb"><div><img id="lbimg" alt=""><div class="cap" id="lbcap"></div></div></div>
+<script>
+  var lb = document.getElementById("lb");
+  document.querySelectorAll("figure img").forEach(function (img) {
+    img.addEventListener("click", function () {
+      document.getElementById("lbimg").src = img.src;
+      document.getElementById("lbcap").textContent = img.dataset.cap || "";
+      lb.classList.add("on");
+    });
+  });
+  lb.addEventListener("click", function () { lb.classList.remove("on"); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") lb.classList.remove("on");
+  });
+</script>
+
+</body>
+</html>
